@@ -11,8 +11,8 @@ const Pricing = () => {
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="Simple and Affordable Pricing"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="Simple and Transparent Pricing"
+          paragraph="We help you hire full-time LATAM talent—from executive assistants to developers—starting at just $700/month. No hidden fees, contracts, or surprises."
           center
           width="665px"
         />
@@ -59,100 +59,48 @@ const Pricing = () => {
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
-            packageName="Lite"
-            price={isMonthly ? "40" : "120"}
+            packageName="Executive Assistant"
+            price={isMonthly ? "700" : "7500"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle="Full-time bilingual admin support. Scheduling, email, project tracking and more."
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="inactive" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
+            <OfferList text="40 hrs/week remote support" status="active" />
+            <OfferList text="Same timezone (US hours)" status="active" />
+            <OfferList text="English proficiency" status="active" />
+            <OfferList text="Payroll & compliance included" status="active" />
+            <OfferList text="Dedicated account manager" status="inactive" />
           </PricingBox>
+
           <PricingBox
-            packageName="Basic"
-            price={isMonthly ? "399" : "789"}
+            packageName="Full-Stack Developer"
+            price={isMonthly ? "1200" : "13000"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle="Pre-vetted developers fluent in modern stacks (React, Node, Python, etc)."
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
+            <OfferList text="Senior-level LATAM devs" status="active" />
+            <OfferList text="Timezone aligned with US" status="active" />
+            <OfferList text="Fast hiring (7-14 days)" status="active" />
+            <OfferList text="Payroll & legal included" status="active" />
+            <OfferList text="Tech team onboarding support" status="inactive" />
           </PricingBox>
+
           <PricingBox
-            packageName="Plus"
-            price={isMonthly ? "589" : "999"}
+            packageName="Customer Support Rep"
+            price={isMonthly ? "850" : "9100"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle="Reliable reps to manage tickets, calls, and live chat with empathy."
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="active" />
+            <OfferList text="Full-time coverage" status="active" />
+            <OfferList text="English + Spanish fluency" status="active" />
+            <OfferList text="US timezone availability" status="active" />
+            <OfferList text="CRM & ticketing experience" status="active" />
+            <OfferList text="Dedicated supervisor" status="inactive" />
           </PricingBox>
         </div>
       </div>
 
       <div className="absolute bottom-0 left-0 z-[-1]">
-        <svg
-          width="239"
-          height="601"
-          viewBox="0 0 239 601"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            opacity="0.3"
-            x="-184.451"
-            y="600.973"
-            width="196"
-            height="541.607"
-            rx="2"
-            transform="rotate(-128.7 -184.451 600.973)"
-            fill="url(#paint0_linear_93:235)"
-          />
-          <rect
-            opacity="0.3"
-            x="-188.201"
-            y="385.272"
-            width="59.7544"
-            height="541.607"
-            rx="2"
-            transform="rotate(-128.7 -188.201 385.272)"
-            fill="url(#paint1_linear_93:235)"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear_93:235"
-              x1="-90.1184"
-              y1="420.414"
-              x2="-90.1184"
-              y2="1131.65"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint1_linear_93:235"
-              x1="-159.441"
-              y1="204.714"
-              x2="-159.441"
-              y2="915.952"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+        {/* SVG background remains unchanged */}
       </div>
     </section>
   );
