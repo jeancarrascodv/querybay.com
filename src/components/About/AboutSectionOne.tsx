@@ -24,8 +24,8 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Scale Your Team with LATAM Talent"
-                paragraph="We connect U.S. companies with top-tier remote professionals from Latin America. From developers to executive assistants, we help you hire full-time talent starting at $700/month—fast, reliable, and ready to work your hours."
+                title="Generación de Leads en LinkedIn y Email"
+                paragraph="Convertimos conexiones en reuniones: optimizamos perfiles, diseñamos secuencias de outreach y creamos campañas de email personalizadas que generan respuestas reales."
                 mb="44px"
               />
 
@@ -35,15 +35,15 @@ const AboutSectionOne = () => {
               >
                 <div className="mx-[-12px] flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Full-time talent from $700/month" />
-                    <List text="Same time zone as U.S." />
-                    <List text="No HR headaches – we handle payroll" />
+                    <List text="Optimización de perfil para captar atención profesional" />
+                    <List text="Secuencias de outreach en LinkedIn con mensajes probados" />
+                    <List text="Campañas de email frío personalizadas y de seguimiento" />
                   </div>
 
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="English-proficient professionals" />
-                    <List text="Remote-ready and pre-vetted" />
-                    <List text="Fast hiring turnaround (7-14 days)" />
+                    <List text="Automatización segura y escalable" />
+                    <List text="Plantillas y scripts listos para usar" />
+                    <List text="Reporting semanal y optimización continua" />
                   </div>
                 </div>
               </div>
