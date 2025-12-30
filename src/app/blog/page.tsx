@@ -5,8 +5,8 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Blog Page for Startup Nextjs Template",
+  title: "Lead Generation Blog | QueryBay",
+  description: "Insights, templates and case studies to generate B2B leads using LinkedIn and cold email.",
   // other metadata
 };
 
@@ -14,8 +14,8 @@ const Blog = () => {
   return (
     <>
       <Breadcrumb
-        pageName="Blog Grid"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero."
+        pageName="Lead Generation Blog"
+        description="Insights, case studies and templates to build a predictable B2B lead pipeline using LinkedIn and cold email."
       />
 
       <section className="pt-[120px] pb-[120px]">
@@ -39,7 +39,7 @@ const Blog = () => {
                     href="#0"
                     className="bg-body-color/15 text-body-color hover:bg-primary flex h-9 min-w-[36px] items-center justify-center rounded-md px-4 text-sm transition hover:text-white"
                   >
-                    Prev
+                    Previous
                   </a>
                 </li>
                 <li className="mx-1">
