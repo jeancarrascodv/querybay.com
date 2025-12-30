@@ -12,7 +12,7 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Generación de Leads en LinkedIn y Email - QueryBay",
+  title: "Generación de Lseads en LinkedIn y Email - QueryBay",
   description: "Servicios y plantillas para convertir conexiones en clientes mediante LinkedIn y campañas de email frío.",
   // other metadata
 };
