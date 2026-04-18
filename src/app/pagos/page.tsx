@@ -269,8 +269,8 @@ const PagosPage = () => {
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                   <p className="text-xs text-black/70 dark:text-white/70">
-                    When you click <strong>Pay</strong>, you'll be redirected to
-                    Stripe's secure checkout. We never store your card — all
+                    When you click <strong>Pay</strong>, you&apos;ll be redirected to
+                    Stripe&apos;s secure checkout. We never store your card — all
                     payment data is processed directly by Stripe (PCI-DSS Level
                     1, 3D Secure).
                   </p>

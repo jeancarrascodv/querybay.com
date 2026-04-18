@@ -26,7 +26,7 @@ const SuccessPage = async ({
             Payment confirmed!
           </h1>
           <p className="mb-8 text-sm text-black/60 sm:text-base dark:text-white/60">
-            Thanks for your subscription. We've emailed your receipt and our
+            Thanks for your subscription. We&apos;ve emailed your receipt and our
             team will reach out within the next 24 hours to kick off your
             onboarding.
           </p>
