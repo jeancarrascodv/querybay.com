@@ -1,39 +1,60 @@
+import Link from "next/link";
+
 const PricingBox = (props: {
   price: string;
   duration: string;
   packageName: string;
   subtitle: string;
+  highlighted?: boolean;
   children: React.ReactNode;
 }) => {
-  const { price, duration, packageName, subtitle, children } = props;
+  const { price, duration, packageName, subtitle, highlighted, children } =
+    props;
 
   return (
-    <div className="w-full">
-      <div className="shadow-three hover:shadow-one dark:bg-gray-dark dark:shadow-two dark:hover:shadow-gray-dark relative z-10 rounded-xs bg-white px-8 py-10">
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="text-dark text-xl font-bold dark:text-white">
+    <div className="relative h-full">
+      {highlighted && (
+        <>
+          <div className="absolute -inset-px rounded-3xl bg-[linear-gradient(140deg,#6366f1,#a855f7,#ec4899)] blur-sm" />
+          <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-4 py-1 text-xs font-semibold text-white shadow-lg">
+            Más popular
+          </div>
+        </>
+      )}
+      <div
+        className={`relative flex h-full flex-col rounded-3xl border p-8 backdrop-blur-md ${
+          highlighted
+            ? "border-transparent bg-white dark:bg-[#0f1220]"
+            : "border-black/5 bg-white/70 dark:border-white/10 dark:bg-white/5"
+        }`}
+      >
+        <div className="mb-6">
+          <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-black/50 dark:text-white/60">
             {packageName}
           </h4>
-          <h3 className="price text-[32px] font-bold text-black dark:text-white">
-            ${price}
-            <span className="time text-body-color text-lg font-medium">
+          <div className="mb-3 flex items-baseline gap-1">
+            <span className="text-5xl font-bold text-black dark:text-white">
+              ${price}
+            </span>
+            <span className="text-base font-medium text-black/50 dark:text-white/50">
               /{duration}
             </span>
-          </h3>
-        </div>
-        <p className="text-body-color mb-6 text-base">{subtitle}</p>
-
-        <div className="border-body-color/10 mb-6 border-b pb-6 dark:border-white/10">
-          <button className="bg-primary/80 hover:shadow-signUp flex w-full items-center justify-center rounded-xs p-3 text-base font-semibold text-white transition duration-300 ease-in-out">
-            Book a Free Consultation
-          </button>
+          </div>
+          <p className="text-sm text-black/60 dark:text-white/70">{subtitle}</p>
         </div>
 
-        <div>{children}</div>
+        <Link
+          href="/pagos"
+          className={`mb-8 flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300 ${
+            highlighted
+              ? "bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
+              : "border border-black/10 bg-white text-black hover:border-black/30 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30"
+          }`}
+        >
+          Contratar plan
+        </Link>
 
-        <div className="absolute right-0 bottom-0 z-[-1]">
-          {/* SVG pattern */}
-        </div>
+        <div className="flex-1">{children}</div>
       </div>
     </div>
   );

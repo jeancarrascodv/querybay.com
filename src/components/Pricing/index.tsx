@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import SectionTitle from "../Common/SectionTitle";
 import OfferList from "./OfferList";
 import PricingBox from "./PricingBox";
 
@@ -8,99 +7,111 @@ const Pricing = () => {
   const [isMonthly, setIsMonthly] = useState(true);
 
   return (
-    <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
-      <div className="container">
-        <SectionTitle
-          title="Simple and Transparent Pricing"
-          paragraph="We help you hire full-time LATAM talent—from executive assistants to developers—starting at just $700/month. No hidden fees, contracts, or surprises."
-          center
-          width="665px"
-        />
+    <section
+      id="pricing"
+      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.1),transparent_70%)] blur-3xl" />
+      </div>
 
-        <div className="w-full">
-          <div className="mb-8 flex justify-center md:mb-12 lg:mb-16">
-            <span
+      <div className="container">
+        <div className="mx-auto mb-12 max-w-[720px] text-center">
+          <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+            Planes
+          </span>
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+            Precios simples y{" "}
+            <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+              transparentes
+            </span>
+          </h2>
+          <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
+            Elige el plan que mejor se ajusta a tu negocio. Sin contratos
+            largos, sin sorpresas. Cancelación flexible.
+          </p>
+        </div>
+
+        <div className="mb-12 flex justify-center">
+          <div className="inline-flex items-center rounded-full border border-black/10 bg-white/60 p-1 backdrop-blur-md dark:border-white/10 dark:bg-white/5">
+            <button
               onClick={() => setIsMonthly(true)}
-              className={`${
+              className={`cursor-pointer rounded-full px-5 py-2 text-sm font-semibold transition ${
                 isMonthly
-                  ? "pointer-events-none text-primary"
-                  : "text-dark dark:text-white"
-              } mr-4 cursor-pointer text-base font-semibold`}
+                  ? "bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] text-white shadow-lg"
+                  : "text-black/60 dark:text-white/60"
+              }`}
             >
-              Monthly
-            </span>
-            <div
-              onClick={() => setIsMonthly(!isMonthly)}
-              className="flex cursor-pointer items-center"
-            >
-              <div className="relative">
-                <div className="h-5 w-14 rounded-full bg-[#1D2144] shadow-inner"></div>
-                <div
-                  className={`${
-                    isMonthly ? "" : "translate-x-full"
-                  } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
-                >
-                  <span className="active h-4 w-4 rounded-full bg-white"></span>
-                </div>
-              </div>
-            </div>
-            <span
+              Mensual
+            </button>
+            <button
               onClick={() => setIsMonthly(false)}
-              className={`${
-                isMonthly
-                  ? "text-dark dark:text-white"
-                  : "pointer-events-none text-primary"
-              } ml-4 cursor-pointer text-base font-semibold`}
+              className={`cursor-pointer rounded-full px-5 py-2 text-sm font-semibold transition ${
+                !isMonthly
+                  ? "bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] text-white shadow-lg"
+                  : "text-black/60 dark:text-white/60"
+              }`}
             >
-              Yearly
-            </span>
+              Anual{" "}
+              <span className="ml-1 text-xs opacity-80">-15%</span>
+            </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
-            packageName="Executive Assistant"
-            price={isMonthly ? "700" : "7500"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Full-time bilingual admin support. Scheduling, email, project tracking and more."
+            packageName="Outreach"
+            price={isMonthly ? "1,490" : "15,200"}
+            duration={isMonthly ? "mes" : "año"}
+            subtitle="Campañas multicanal gestionadas para agendar reuniones calificadas todos los meses."
           >
-            <OfferList text="40 hrs/week remote support" status="active" />
-            <OfferList text="Same timezone (US hours)" status="active" />
-            <OfferList text="English proficiency" status="active" />
-            <OfferList text="Payroll & compliance included" status="active" />
-            <OfferList text="Dedicated account manager" status="inactive" />
+            <OfferList text="LinkedIn + Email gestionados" status="active" />
+            <OfferList text="Copy personalizado con IA" status="active" />
+            <OfferList text="Hasta 1.000 leads/mes" status="active" />
+            <OfferList text="Reporting semanal" status="active" />
+            <OfferList text="WhatsApp + cold calling" status="inactive" />
+            <OfferList text="Account manager dedicado" status="inactive" />
           </PricingBox>
 
           <PricingBox
-            packageName="Full-Stack Developer"
-            price={isMonthly ? "1200" : "13000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Pre-vetted developers fluent in modern stacks (React, Node, Python, etc)."
+            packageName="Growth"
+            price={isMonthly ? "3,490" : "35,600"}
+            duration={isMonthly ? "mes" : "año"}
+            subtitle="Stack completo de growth: outreach + ads + CRO + analítica con un equipo dedicado."
+            highlighted
           >
-            <OfferList text="Senior-level LATAM devs" status="active" />
-            <OfferList text="Timezone aligned with US" status="active" />
-            <OfferList text="Fast hiring (7-14 days)" status="active" />
-            <OfferList text="Payroll & legal included" status="active" />
-            <OfferList text="Tech team onboarding support" status="inactive" />
+            <OfferList text="Todo lo de Outreach" status="active" />
+            <OfferList text="WhatsApp + cold calling" status="active" />
+            <OfferList text="Paid ads (Meta, LinkedIn, Google)" status="active" />
+            <OfferList text="Landing pages + CRO" status="active" />
+            <OfferList text="Hasta 5.000 leads/mes" status="active" />
+            <OfferList text="Account manager dedicado" status="active" />
           </PricingBox>
 
           <PricingBox
-            packageName="Customer Support Rep"
-            price={isMonthly ? "850" : "9100"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Reliable reps to manage tickets, calls, and live chat with empathy."
+            packageName="Talent"
+            price={isMonthly ? "desde 1,200" : "desde 13,000"}
+            duration={isMonthly ? "mes" : "año"}
+            subtitle="Contratación de profesionales remotos full-time en LATAM y Ghana con payroll incluido."
           >
-            <OfferList text="Full-time coverage" status="active" />
-            <OfferList text="English + Spanish fluency" status="active" />
-            <OfferList text="US timezone availability" status="active" />
-            <OfferList text="CRM & ticketing experience" status="active" />
-            <OfferList text="Dedicated supervisor" status="inactive" />
+            <OfferList text="Sourcing + vetting incluido" status="active" />
+            <OfferList text="Contratación en 7-14 días" status="active" />
+            <OfferList text="Payroll y compliance global" status="active" />
+            <OfferList text="Beneficios y contratos" status="active" />
+            <OfferList text="Reemplazo garantizado 90 días" status="active" />
+            <OfferList text="Sin fee de sourcing" status="active" />
           </PricingBox>
         </div>
-      </div>
 
-      <div className="absolute bottom-0 left-0 z-[-1]">
-        {/* SVG background remains unchanged */}
+        <p className="mt-10 text-center text-sm text-black/50 dark:text-white/50">
+          ¿Necesitas algo a medida?{" "}
+          <a
+            href="#contact"
+            className="font-semibold text-black underline-offset-4 hover:underline dark:text-white"
+          >
+            Habla con nuestro equipo
+          </a>
+        </p>
       </div>
     </section>
   );

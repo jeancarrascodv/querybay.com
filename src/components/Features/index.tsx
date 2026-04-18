@@ -1,26 +1,40 @@
-import SectionTitle from "../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
 import featuresData from "./featuresData";
 
 const Features = () => {
   return (
-    <>
-      <section id="features" className="py-16 md:py-20 lg:py-28">
-        <div className="container">
-          <SectionTitle
-            title="Main Features"
-            paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
-            center
-          />
+    <section
+      id="features"
+      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-0 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.12),transparent_70%)] blur-3xl" />
+      </div>
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {featuresData.map((feature) => (
-              <SingleFeature key={feature.id} feature={feature} />
-            ))}
-          </div>
+      <div className="container">
+        <div className="mx-auto mb-16 max-w-[720px] text-center">
+          <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+            Servicios
+          </span>
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+            Todo lo que necesitas para{" "}
+            <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+              crecer sin fricción
+            </span>
+          </h2>
+          <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
+            Un stack completo de growth, outreach y talento remoto. Elige los
+            servicios que necesitas o combínalos para escalar más rápido.
+          </p>
         </div>
-      </section>
-    </>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {featuresData.map((feature) => (
+            <SingleFeature key={feature.id} feature={feature} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

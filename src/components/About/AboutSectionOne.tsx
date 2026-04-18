@@ -1,68 +1,127 @@
-import Image from "next/image";
-import SectionTitle from "../Common/SectionTitle";
-
-const checkIcon = (
-  <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
-    <path d="M5.8535 12.6631C5.65824 12.8584 5.34166 12.8584 5.1464 12.6631L0.678505 8.1952C0.483242 7.99994 0.483242 7.68336 0.678505 7.4881L2.32921 5.83739C2.52467 5.64193 2.84166 5.64216 3.03684 5.83791L5.14622 7.95354C5.34147 8.14936 5.65859 8.14952 5.85403 7.95388L13.3797 0.420561C13.575 0.22513 13.8917 0.225051 14.087 0.420383L15.7381 2.07143C15.9333 2.26669 15.9333 2.58327 15.7381 2.77854L5.8535 12.6631Z" />
-  </svg>
-);
+const channels = [
+  {
+    name: "LinkedIn",
+    desc: "Connection requests + InMails + contenido",
+    color: "from-[#0077b5] to-[#00a0dc]",
+  },
+  {
+    name: "Cold Email",
+    desc: "Dominios calentados, copy personalizado con IA",
+    color: "from-[#ef4444] to-[#f97316]",
+  },
+  {
+    name: "WhatsApp",
+    desc: "Nurturing conversacional y cierre directo",
+    color: "from-[#25d366] to-[#128c7e]",
+  },
+  {
+    name: "Voice & Video",
+    desc: "Cold calling, VSLs y agentes de IA",
+    color: "from-[#a855f7] to-[#ec4899]",
+  },
+];
 
 const AboutSectionOne = () => {
-  const List = ({ text }) => (
-    <p className="text-body-color mb-5 flex items-center text-lg font-medium">
-      <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
-        {checkIcon}
-      </span>
-      {text}
-    </p>
-  );
-
   return (
-    <section id="about" className="pt-16 md:pt-20 lg:pt-28">
+    <section
+      id="about"
+      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
+    >
       <div className="container">
-        <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 lg:w-1/2">
-              <SectionTitle
-                title="Generación de Leads en LinkedIn y Email"
-                paragraph="Convertimos conexiones en reuniones: optimizamos perfiles, diseñamos secuencias de outreach y creamos campañas de email personalizadas que generan respuestas reales."
-                mb="44px"
-              />
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+          <div>
+            <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+              Outreach Multicanal
+            </span>
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+              Llegamos a tus prospectos{" "}
+              <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+                donde sea que estén
+              </span>
+            </h2>
+            <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
+              Dejamos de depender de un solo canal. Orquestamos campañas
+              coordinadas en LinkedIn, email, WhatsApp y voz para maximizar la
+              probabilidad de conversación con cada cuenta objetivo.
+            </p>
 
-              <div
-                className="mb-12 max-w-[570px] lg:mb-0"
-                data-wow-delay=".15s"
-              >
-                <div className="mx-[-12px] flex flex-wrap">
-                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Optimización de perfil para captar atención profesional" />
-                    <List text="Secuencias de outreach en LinkedIn con mensajes probados" />
-                    <List text="Campañas de email frío personalizadas y de seguimiento" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {channels.map((c) => (
+                <div
+                  key={c.name}
+                  className="rounded-2xl border border-black/5 bg-white/60 p-5 backdrop-blur-md dark:border-white/10 dark:bg-white/5"
+                >
+                  <div
+                    className={`mb-3 inline-flex h-2 w-2 rounded-full bg-gradient-to-br ${c.color}`}
+                  />
+                  <h4 className="mb-1 text-base font-semibold text-black dark:text-white">
+                    {c.name}
+                  </h4>
+                  <p className="text-sm text-black/55 dark:text-white/60">
+                    {c.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Visual: Dashboard mock */}
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-3xl bg-[linear-gradient(135deg,#6366f1,#a855f7,#ec4899)] opacity-20 blur-3xl" />
+            <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl dark:border-white/10 dark:bg-[#0f1220]/80">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">
+                    Pipeline semanal
                   </div>
-
-                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Automatización segura y escalable" />
-                    <List text="Plantillas y scripts listos para usar" />
-                    <List text="Reporting semanal y optimización continua" />
+                  <div className="text-2xl font-bold text-black dark:text-white">
+                    347 respuestas
                   </div>
                 </div>
+                <div className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                  +32.4%
+                </div>
               </div>
-            </div>
 
-            <div className="w-full px-4 lg:w-1/2">
-              <div className="relative mx-auto aspect-25/24 max-w-[500px] lg:mr-0">
-                <Image
-                  src="/images/about/remote-team.svg"
-                  alt="LATAM remote team"
-                  fill
-                  className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
-                />
-                <Image
-                  src="/images/about/remote-team-dark.svg"
-                  alt="LATAM remote team dark"
-                  fill
-                  className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
-                />
+              <div className="space-y-3">
+                {[
+                  { label: "LinkedIn", value: 78, color: "from-[#6366f1] to-[#8b5cf6]" },
+                  { label: "Email", value: 92, color: "from-[#a855f7] to-[#ec4899]" },
+                  { label: "WhatsApp", value: 54, color: "from-[#10b981] to-[#06b6d4]" },
+                  { label: "Voz", value: 34, color: "from-[#f59e0b] to-[#ef4444]" },
+                ].map((row) => (
+                  <div key={row.label}>
+                    <div className="mb-1 flex items-center justify-between text-xs">
+                      <span className="text-black/60 dark:text-white/60">
+                        {row.label}
+                      </span>
+                      <span className="font-medium text-black/80 dark:text-white/80">
+                        {row.value}%
+                      </span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${row.color}`}
+                        style={{ width: `${row.value}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-3 border-t border-black/5 pt-6 dark:border-white/10">
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Reuniones</div>
+                  <div className="text-lg font-bold text-black dark:text-white">48</div>
+                </div>
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">CTR email</div>
+                  <div className="text-lg font-bold text-black dark:text-white">12.8%</div>
+                </div>
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Reply rate</div>
+                  <div className="text-lg font-bold text-black dark:text-white">9.1%</div>
+                </div>
               </div>
             </div>
           </div>
