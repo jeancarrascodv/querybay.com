@@ -37,12 +37,43 @@ const plans: Plan[] = [
 const PagosPage = () => {
   const [selectedPlan, setSelectedPlan] = useState<Plan>(plans[1]);
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const basePrice = selectedPlan.price;
   const finalPrice =
     billing === "yearly" ? Math.round(basePrice * 12 * 0.85) : basePrice;
   const tax = Math.round(finalPrice * 0.21);
   const total = finalPrice + tax;
+
+  const handleCheckout = async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: selectedPlan.id,
+          billing,
+          email,
+          name,
+          company,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        throw new Error(data.error ?? "No se pudo iniciar el pago");
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error desconocido");
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="relative min-h-screen overflow-hidden pt-28 pb-20 md:pt-32 lg:pt-36">
@@ -165,6 +196,8 @@ const PagosPage = () => {
                     <input
                       type="text"
                       placeholder="Tu nombre"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
                     />
                   </div>
@@ -175,6 +208,8 @@ const PagosPage = () => {
                     <input
                       type="text"
                       placeholder="Empresa"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
                       className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
                     />
                   </div>
@@ -185,6 +220,8 @@ const PagosPage = () => {
                     <input
                       type="email"
                       placeholder="facturacion@empresa.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
                     />
                   </div>
@@ -207,9 +244,9 @@ const PagosPage = () => {
                 </div>
               </div>
 
-              {/* Payment method */}
+              {/* Payment method — handled by Stripe Checkout (hosted) */}
               <div className="rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl sm:p-8 dark:border-white/10 dark:bg-[#0f1220]/80">
-                <div className="mb-5 flex items-center justify-between">
+                <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-black dark:text-white">
                     3. Método de pago
                   </h2>
@@ -226,45 +263,17 @@ const PagosPage = () => {
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                      Número de tarjeta
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="1234 5678 9012 3456"
-                        className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 pr-12 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                      />
-                      <svg className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black/30 dark:text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="5" width="20" height="14" rx="2" />
-                        <line x1="2" y1="10" x2="22" y2="10" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                        Vencimiento
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="MM / AA"
-                        className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                      />
-                    </div>
-                    <div>
-                      <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                        CVC
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="123"
-                        className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                      />
-                    </div>
-                  </div>
+                <div className="flex items-start gap-3 rounded-2xl bg-black/5 p-4 dark:bg-white/5">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#a855f7]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  <p className="text-xs text-black/70 dark:text-white/70">
+                    Al pulsar <strong>Pagar</strong> serás redirigido al
+                    checkout seguro de Stripe. Nunca almacenamos tu tarjeta —
+                    toda la información de pago se procesa directamente con
+                    Stripe (PCI-DSS nivel 1, 3D Secure).
+                  </p>
                 </div>
               </div>
             </div>
@@ -323,13 +332,34 @@ const PagosPage = () => {
                   </div>
                 </div>
 
-                <button className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                  </svg>
-                  Pagar ${total.toLocaleString()}
+                <button
+                  onClick={handleCheckout}
+                  disabled={loading}
+                  className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {loading ? (
+                    <>
+                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                      </svg>
+                      Redirigiendo…
+                    </>
+                  ) : (
+                    <>
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      </svg>
+                      Pagar ${total.toLocaleString()}
+                    </>
+                  )}
                 </button>
+
+                {error && (
+                  <p className="mt-3 rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-500 dark:text-red-400">
+                    {error}
+                  </p>
+                )}
 
                 <div className="mt-5 space-y-2 text-xs text-black/50 dark:text-white/50">
                   <div className="flex items-center gap-2">
