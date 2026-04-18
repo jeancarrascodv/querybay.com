@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
 
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
   let event;
   try {
-    event = stripe.webhooks.constructEvent(rawBody, signature, secret);
+    event = getStripe().webhooks.constructEvent(rawBody, signature, secret);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Invalid signature";
     console.error("[stripe/webhook] signature verification failed:", message);

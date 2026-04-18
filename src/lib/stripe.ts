@@ -1,38 +1,43 @@
 import Stripe from "stripe";
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error("STRIPE_SECRET_KEY is not set in .env.local");
-}
+let stripeSingleton: InstanceType<typeof Stripe> | null = null;
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2026-03-25.dahlia",
-  typescript: true,
-});
+export function getStripe(): InstanceType<typeof Stripe> {
+  if (stripeSingleton) return stripeSingleton;
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error("STRIPE_SECRET_KEY is not set");
+  }
+  stripeSingleton = new Stripe(key, {
+    apiVersion: "2026-03-25.dahlia",
+    typescript: true,
+  });
+  return stripeSingleton;
+}
 
 export type PlanId = "outreach" | "growth" | "talent";
 export type Billing = "monthly" | "yearly";
 
-const PRICE_MAP: Record<PlanId, Record<Billing, string | undefined>> = {
+const PRICE_ENV_MAP: Record<PlanId, Record<Billing, string>> = {
   outreach: {
-    monthly: process.env.STRIPE_PRICE_OUTREACH_MONTHLY,
-    yearly: process.env.STRIPE_PRICE_OUTREACH_YEARLY,
+    monthly: "STRIPE_PRICE_OUTREACH_MONTHLY",
+    yearly: "STRIPE_PRICE_OUTREACH_YEARLY",
   },
   growth: {
-    monthly: process.env.STRIPE_PRICE_GROWTH_MONTHLY,
-    yearly: process.env.STRIPE_PRICE_GROWTH_YEARLY,
+    monthly: "STRIPE_PRICE_GROWTH_MONTHLY",
+    yearly: "STRIPE_PRICE_GROWTH_YEARLY",
   },
   talent: {
-    monthly: process.env.STRIPE_PRICE_TALENT_MONTHLY,
-    yearly: process.env.STRIPE_PRICE_TALENT_YEARLY,
+    monthly: "STRIPE_PRICE_TALENT_MONTHLY",
+    yearly: "STRIPE_PRICE_TALENT_YEARLY",
   },
 };
 
 export function getPriceId(plan: PlanId, billing: Billing): string {
-  const priceId = PRICE_MAP[plan]?.[billing];
+  const envKey = PRICE_ENV_MAP[plan]?.[billing];
+  const priceId = envKey ? process.env[envKey] : undefined;
   if (!priceId || priceId.startsWith("price_REPLACE")) {
-    throw new Error(
-      `Missing STRIPE_PRICE_${plan.toUpperCase()}_${billing.toUpperCase()} in .env.local`,
-    );
+    throw new Error(`Missing ${envKey} env var`);
   }
   return priceId;
 }
