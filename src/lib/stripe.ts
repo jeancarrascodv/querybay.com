@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 
 if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error("STRIPE_SECRET_KEY no está definida en .env.local");
+  throw new Error("STRIPE_SECRET_KEY is not set in .env.local");
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
@@ -29,9 +29,9 @@ const PRICE_MAP: Record<PlanId, Record<Billing, string | undefined>> = {
 
 export function getPriceId(plan: PlanId, billing: Billing): string {
   const priceId = PRICE_MAP[plan]?.[billing];
-  if (!priceId || priceId.startsWith("price_REEMPLAZA")) {
+  if (!priceId || priceId.startsWith("price_REPLACE")) {
     throw new Error(
-      `Falta STRIPE_PRICE_${plan.toUpperCase()}_${billing.toUpperCase()} en .env.local`,
+      `Missing STRIPE_PRICE_${plan.toUpperCase()}_${billing.toUpperCase()} in .env.local`,
     );
   }
   return priceId;

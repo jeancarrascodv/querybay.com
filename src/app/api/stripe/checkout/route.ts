@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 
     if (!plan || !billing) {
       return NextResponse.json(
-        { error: "plan y billing son requeridos" },
+        { error: "plan and billing are required" },
         { status: 400 },
       );
     }
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ url: session.url });
   } catch (err) {
     const message =
-      err instanceof Error ? err.message : "Error creando sesión de checkout";
+      err instanceof Error ? err.message : "Error creating checkout session";
     console.error("[stripe/checkout]", err);
     return NextResponse.json({ error: message }, { status: 500 });
   }

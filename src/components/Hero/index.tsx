@@ -33,21 +33,22 @@ const Hero = () => {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            Growth · Outreach multicanal · Talento LATAM + Ghana
+            Growth · Multichannel Outreach · Remote Talent from LATAM + Ghana
           </div>
 
           <h1 className="mb-6 text-4xl font-bold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
-            Outreach que convierte.
+            Outreach that converts.
             <br />
             <span className="bg-[linear-gradient(110deg,#6366f1_0%,#a855f7_45%,#ec4899_100%)] bg-clip-text text-transparent">
-              Talento que escala.
+              Talent that scales.
             </span>
           </h1>
 
           <p className="mx-auto mb-10 max-w-[680px] text-base leading-relaxed text-black/60 sm:text-lg md:text-xl dark:text-white/70">
-            Generamos reuniones calificadas con campañas en LinkedIn, email,
-            WhatsApp y llamadas. Además, construimos tu equipo con talento top
-            de LATAM y Ghana — sin fricción, sin HR, sin compromisos.
+            We book qualified meetings with coordinated campaigns across
+            LinkedIn, email, WhatsApp, and calls. Then we build your team with
+            top-tier talent from LATAM and Ghana — no friction, no HR hassle,
+            no long commitments.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -56,7 +57,7 @@ const Hero = () => {
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-8 py-4 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-300 hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.8)]"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Empezar ahora
+                Get started
                 <svg
                   className="h-4 w-4 transition-transform group-hover:translate-x-1"
                   viewBox="0 0 24 24"
@@ -87,17 +88,17 @@ const Hero = () => {
                 <path d="M10 17l5-5-5-5" />
                 <path d="M15 12H3" />
               </svg>
-              Iniciar sesión
+              Sign in
             </Link>
           </div>
 
           {/* Trust metrics */}
           <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
             {[
-              { value: "+12k", label: "reuniones generadas" },
-              { value: "7-14 días", label: "contratación llave en mano" },
-              { value: "2 continentes", label: "LATAM + Ghana" },
-              { value: "4 canales", label: "LinkedIn · Email · WSP · Call" },
+              { value: "+12k", label: "meetings booked" },
+              { value: "7-14 days", label: "turnkey hiring" },
+              { value: "2 continents", label: "LATAM + Ghana" },
+              { value: "4 channels", label: "LinkedIn · Email · WhatsApp · Call" },
             ].map((m) => (
               <div
                 key={m.label}

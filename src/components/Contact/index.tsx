@@ -13,26 +13,26 @@ const Contact = () => {
             <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-2">
               <div>
                 <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-                  Empieza hoy
+                  Get started today
                 </span>
                 <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-                  Cuéntanos de tu{" "}
+                  Tell us about your{" "}
                   <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-                    proyecto
+                    project
                   </span>
                 </h2>
                 <p className="mb-8 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-                  Agenda una llamada gratis de 30 min. Auditamos tu funnel, te
-                  damos 3 plantillas probadas y un plan de acción concreto —
-                  sin compromiso.
+                  Book a free 30-min call. We'll audit your funnel, share 3
+                  proven templates, and hand you a concrete action plan — no
+                  strings attached.
                 </p>
 
                 <ul className="space-y-3">
                   {[
-                    "Auditoría de outreach actual",
-                    "3 plantillas personalizadas",
-                    "Propuesta de equipo LATAM/Ghana",
-                    "Plan a 90 días con KPIs",
+                    "Audit of your current outreach",
+                    "3 personalized templates",
+                    "LATAM/Ghana team proposal",
+                    "90-day plan with KPIs",
                   ].map((item) => (
                     <li
                       key={item}
@@ -56,12 +56,12 @@ const Contact = () => {
                       htmlFor="name"
                       className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
                     >
-                      Nombre
+                      Name
                     </label>
                     <input
                       id="name"
                       type="text"
-                      placeholder="Tu nombre"
+                      placeholder="Your name"
                       className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
                     />
                   </div>
@@ -70,12 +70,12 @@ const Contact = () => {
                       htmlFor="company"
                       className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
                     >
-                      Empresa
+                      Company
                     </label>
                     <input
                       id="company"
                       type="text"
-                      placeholder="Tu empresa"
+                      placeholder="Your company"
                       className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
                     />
                   </div>
@@ -90,7 +90,7 @@ const Contact = () => {
                   <input
                     id="email"
                     type="email"
-                    placeholder="tu@empresa.com"
+                    placeholder="you@company.com"
                     className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
                   />
                 </div>
@@ -99,17 +99,17 @@ const Contact = () => {
                     htmlFor="interest"
                     className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
                   >
-                    Me interesa
+                    I'm interested in
                   </label>
                   <select
                     id="interest"
                     className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
                   >
-                    <option>Outreach multicanal</option>
-                    <option>Growth Marketing</option>
-                    <option>Outsourcing de servicios</option>
-                    <option>Reclutamiento LATAM / Ghana</option>
-                    <option>Una combinación</option>
+                    <option>Multichannel outreach</option>
+                    <option>Growth marketing</option>
+                    <option>Service outsourcing</option>
+                    <option>LATAM / Ghana hiring</option>
+                    <option>A combination of these</option>
                   </select>
                 </div>
                 <div>
@@ -117,12 +117,12 @@ const Contact = () => {
                     htmlFor="message"
                     className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
                   >
-                    Mensaje (opcional)
+                    Message (optional)
                   </label>
                   <textarea
                     id="message"
                     rows={3}
-                    placeholder="Cuéntanos un poco más..."
+                    placeholder="Tell us a bit more..."
                     className="w-full resize-none rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
                   />
                 </div>
@@ -130,7 +130,7 @@ const Contact = () => {
                   type="submit"
                   className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
                 >
-                  Agendar llamada gratis
+                  Book a free call
                   <svg className="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>

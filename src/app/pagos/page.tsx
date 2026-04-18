@@ -14,23 +14,23 @@ const plans: Plan[] = [
   {
     id: "outreach",
     name: "Outreach",
-    description: "Campañas multicanal gestionadas",
-    price: 1490,
-    period: "mes",
+    description: "Managed multichannel outbound campaigns",
+    price: 390,
+    period: "mo",
   },
   {
     id: "growth",
     name: "Growth",
-    description: "Stack completo: outreach + ads + CRO",
-    price: 3490,
-    period: "mes",
+    description: "Full stack: outreach + paid ads + CRO",
+    price: 650,
+    period: "mo",
   },
   {
     id: "talent",
     name: "Talent",
-    description: "Contratación full-time LATAM / Ghana",
+    description: "Full-time remote hiring in LATAM & Ghana",
     price: 1200,
-    period: "mes",
+    period: "mo",
   },
 ];
 
@@ -44,10 +44,8 @@ const PagosPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   const basePrice = selectedPlan.price;
-  const finalPrice =
+  const total =
     billing === "yearly" ? Math.round(basePrice * 12 * 0.85) : basePrice;
-  const tax = Math.round(finalPrice * 0.21);
-  const total = finalPrice + tax;
 
   const handleCheckout = async () => {
     setError(null);
@@ -66,11 +64,11 @@ const PagosPage = () => {
       });
       const data = await res.json();
       if (!res.ok || !data.url) {
-        throw new Error(data.error ?? "No se pudo iniciar el pago");
+        throw new Error(data.error ?? "Could not start checkout");
       }
       window.location.href = data.url;
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Error desconocido");
+      setError(err instanceof Error ? err.message : "Unknown error");
       setLoading(false);
     }
   };
@@ -86,16 +84,16 @@ const PagosPage = () => {
         <div className="mx-auto max-w-[1100px]">
           <div className="mb-10 text-center">
             <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-              Checkout seguro · SSL
+              Secure checkout · SSL
             </span>
             <h1 className="mb-3 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-              Completa tu{" "}
+              Complete your{" "}
               <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-                contratación
+                subscription
               </span>
             </h1>
             <p className="text-sm text-black/60 sm:text-base dark:text-white/60">
-              Tu pago se procesa de forma segura. Cancelación flexible en cualquier momento.
+              Your payment is processed securely. Cancel anytime.
             </p>
           </div>
 
@@ -105,10 +103,10 @@ const PagosPage = () => {
               {/* Plan select */}
               <div className="rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl sm:p-8 dark:border-white/10 dark:bg-[#0f1220]/80">
                 <h2 className="mb-1 text-lg font-semibold text-black dark:text-white">
-                  1. Elige tu plan
+                  1. Choose your plan
                 </h2>
                 <p className="mb-5 text-xs text-black/50 dark:text-white/50">
-                  Puedes cambiar o cancelar cuando quieras.
+                  You can change or cancel anytime.
                 </p>
 
                 <div className="mb-5 flex gap-2">
@@ -120,7 +118,7 @@ const PagosPage = () => {
                         : "border border-black/10 text-black/60 hover:border-black/30 dark:border-white/10 dark:text-white/60"
                     }`}
                   >
-                    Mensual
+                    Monthly
                   </button>
                   <button
                     onClick={() => setBilling("yearly")}
@@ -130,7 +128,7 @@ const PagosPage = () => {
                         : "border border-black/10 text-black/60 hover:border-black/30 dark:border-white/10 dark:text-white/60"
                     }`}
                   >
-                    Anual <span className="ml-1 text-xs opacity-80">-15%</span>
+                    Yearly <span className="ml-1 text-xs opacity-80">-15%</span>
                   </button>
                 </div>
 
@@ -185,17 +183,17 @@ const PagosPage = () => {
               {/* Billing info */}
               <div className="rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl sm:p-8 dark:border-white/10 dark:bg-[#0f1220]/80">
                 <h2 className="mb-5 text-lg font-semibold text-black dark:text-white">
-                  2. Información de facturación
+                  2. Billing information
                 </h2>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                      Nombre
+                      Name
                     </label>
                     <input
                       type="text"
-                      placeholder="Tu nombre"
+                      placeholder="Your name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
@@ -203,11 +201,11 @@ const PagosPage = () => {
                   </div>
                   <div>
                     <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                      Empresa
+                      Company
                     </label>
                     <input
                       type="text"
-                      placeholder="Empresa"
+                      placeholder="Company"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
                       className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
@@ -219,7 +217,7 @@ const PagosPage = () => {
                     </label>
                     <input
                       type="email"
-                      placeholder="facturacion@empresa.com"
+                      placeholder="billing@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
@@ -227,18 +225,20 @@ const PagosPage = () => {
                   </div>
                   <div className="sm:col-span-2">
                     <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                      País
+                      Country
                     </label>
                     <select className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white">
-                      <option>México</option>
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>United Kingdom</option>
+                      <option>Mexico</option>
                       <option>Colombia</option>
                       <option>Argentina</option>
                       <option>Chile</option>
-                      <option>Perú</option>
-                      <option>España</option>
-                      <option>Estados Unidos</option>
+                      <option>Peru</option>
+                      <option>Spain</option>
                       <option>Ghana</option>
-                      <option>Otro</option>
+                      <option>Other</option>
                     </select>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ const PagosPage = () => {
               <div className="rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl sm:p-8 dark:border-white/10 dark:bg-[#0f1220]/80">
                 <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-black dark:text-white">
-                    3. Método de pago
+                    3. Payment method
                   </h2>
                   <div className="flex gap-2">
                     <span className="rounded-md bg-black/5 px-2 py-1 text-xs font-bold text-black/60 dark:bg-white/10 dark:text-white/60">
@@ -269,10 +269,10 @@ const PagosPage = () => {
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                   <p className="text-xs text-black/70 dark:text-white/70">
-                    Al pulsar <strong>Pagar</strong> serás redirigido al
-                    checkout seguro de Stripe. Nunca almacenamos tu tarjeta —
-                    toda la información de pago se procesa directamente con
-                    Stripe (PCI-DSS nivel 1, 3D Secure).
+                    When you click <strong>Pay</strong>, you'll be redirected to
+                    Stripe's secure checkout. We never store your card — all
+                    payment data is processed directly by Stripe (PCI-DSS Level
+                    1, 3D Secure).
                   </p>
                 </div>
               </div>
@@ -282,7 +282,7 @@ const PagosPage = () => {
             <div className="lg:col-span-2">
               <div className="sticky top-24 rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl sm:p-8 dark:border-white/10 dark:bg-[#0f1220]/80">
                 <h2 className="mb-5 text-lg font-semibold text-black dark:text-white">
-                  Resumen
+                  Order summary
                 </h2>
 
                 <div className="mb-5 rounded-2xl bg-[linear-gradient(135deg,rgba(99,102,241,0.08),rgba(236,72,153,0.08))] p-4 dark:bg-[linear-gradient(135deg,rgba(99,102,241,0.15),rgba(236,72,153,0.15))]">
@@ -296,7 +296,7 @@ const PagosPage = () => {
                       </div>
                     </div>
                     <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold uppercase text-black/70 dark:bg-white/10 dark:text-white/80">
-                      {billing === "yearly" ? "Anual" : "Mensual"}
+                      {billing === "yearly" ? "Yearly" : "Monthly"}
                     </span>
                   </div>
                 </div>
@@ -304,18 +304,17 @@ const PagosPage = () => {
                 <div className="space-y-3 border-t border-black/5 pt-5 text-sm dark:border-white/10">
                   <div className="flex justify-between text-black/70 dark:text-white/70">
                     <span>Subtotal</span>
-                    <span>${finalPrice.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between text-black/70 dark:text-white/70">
-                    <span>Impuestos (21%)</span>
-                    <span>${tax.toLocaleString()}</span>
+                    <span>${total.toLocaleString()}</span>
                   </div>
                   {billing === "yearly" && (
                     <div className="flex justify-between text-emerald-600 dark:text-emerald-400">
-                      <span>Descuento anual</span>
+                      <span>Yearly discount</span>
                       <span>-15%</span>
                     </div>
                   )}
+                  <p className="text-xs text-black/50 dark:text-white/50">
+                    Sales tax (if applicable) is calculated at checkout.
+                  </p>
                 </div>
 
                 <div className="my-5 border-t border-black/5 pt-5 dark:border-white/10">
@@ -328,7 +327,7 @@ const PagosPage = () => {
                     </span>
                   </div>
                   <div className="mt-1 text-right text-xs text-black/50 dark:text-white/50">
-                    {billing === "yearly" ? "Cobrado anualmente" : "Cobrado mensualmente"}
+                    {billing === "yearly" ? "Billed yearly" : "Billed monthly"}
                   </div>
                 </div>
 
@@ -342,7 +341,7 @@ const PagosPage = () => {
                       <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                       </svg>
-                      Redirigiendo…
+                      Redirecting…
                     </>
                   ) : (
                     <>
@@ -350,7 +349,7 @@ const PagosPage = () => {
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                       </svg>
-                      Pagar ${total.toLocaleString()}
+                      Pay ${total.toLocaleString()}
                     </>
                   )}
                 </button>
@@ -367,26 +366,26 @@ const PagosPage = () => {
                       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                     </svg>
-                    Pago seguro SSL · 3D Secure
+                    Secure SSL · 3D Secure
                   </div>
                   <div className="flex items-center gap-2">
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
-                    Cancelación en cualquier momento
+                    Cancel anytime
                   </div>
                   <div className="flex items-center gap-2">
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
-                    Soporte dedicado 24/7
+                    Dedicated 24/7 support
                   </div>
                 </div>
 
                 <p className="mt-5 text-center text-xs text-black/50 dark:text-white/50">
-                  ¿Ya eres cliente?{" "}
+                  Already a customer?{" "}
                   <Link href="/signin" className="font-semibold text-[#a855f7] hover:underline">
-                    Iniciar sesión
+                    Sign in
                   </Link>
                 </p>
               </div>

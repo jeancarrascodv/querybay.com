@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Iniciar sesión | QueryBay",
-  description: "Accede a tu portal de cliente QueryBay.",
+  title: "Sign in | QueryBay",
+  description: "Access your QueryBay customer portal.",
 };
 
 const SigninPage = () => {
@@ -39,20 +39,20 @@ const SigninPage = () => {
 
               <div className="mt-auto">
                 <h2 className="mb-4 text-3xl font-bold leading-tight text-white">
-                  Tu portal de growth,
+                  Your portal for growth,
                   <br />
-                  outreach y talento.
+                  outreach, and talent.
                 </h2>
                 <p className="mb-8 text-sm leading-relaxed text-white/70">
-                  Gestiona campañas, revisa métricas, aprueba contrataciones y
-                  controla pagos desde un solo lugar.
+                  Manage campaigns, track metrics, approve hires, and control
+                  payments — all from one place.
                 </p>
 
                 <div className="space-y-4">
                   {[
-                    "Dashboard de pipeline en tiempo real",
-                    "Roster del equipo LATAM + Ghana",
-                    "Facturación y pagos centralizados",
+                    "Real-time pipeline dashboard",
+                    "LATAM + Ghana team roster",
+                    "Centralized billing and payments",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3 text-sm text-white/90">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15 backdrop-blur-md">
@@ -72,10 +72,10 @@ const SigninPage = () => {
           <div className="p-8 sm:p-10 lg:p-12">
             <div className="mb-8">
               <h1 className="mb-2 text-2xl font-bold tracking-tight text-black sm:text-3xl dark:text-white">
-                Bienvenido de nuevo
+                Welcome back
               </h1>
               <p className="text-sm text-black/60 dark:text-white/60">
-                Accede a tu portal de cliente.
+                Access your customer portal.
               </p>
             </div>
 
@@ -100,7 +100,7 @@ const SigninPage = () => {
             <div className="mb-6 flex items-center gap-3">
               <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
               <span className="text-xs text-black/40 dark:text-white/40">
-                o con email
+                or with email
               </span>
               <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
             </div>
@@ -113,17 +113,17 @@ const SigninPage = () => {
                 <input
                   id="email"
                   type="email"
-                  placeholder="tu@empresa.com"
+                  placeholder="you@company.com"
                   className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
                 />
               </div>
               <div>
                 <div className="mb-2 flex items-center justify-between">
                   <label htmlFor="password" className="text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                    Contraseña
+                    Password
                   </label>
                   <a href="#" className="text-xs font-medium text-[#a855f7] hover:underline">
-                    ¿Olvidaste tu contraseña?
+                    Forgot your password?
                   </a>
                 </div>
                 <input
@@ -136,21 +136,21 @@ const SigninPage = () => {
 
               <label className="flex cursor-pointer items-center gap-2 text-sm text-black/70 dark:text-white/70">
                 <input type="checkbox" className="h-4 w-4 rounded border-black/20 text-[#a855f7] focus:ring-[#a855f7]" />
-                Mantener sesión iniciada
+                Keep me signed in
               </label>
 
               <button
                 type="submit"
                 className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
               >
-                Iniciar sesión
+                Sign in
               </button>
             </form>
 
             <p className="mt-6 text-center text-sm text-black/60 dark:text-white/60">
-              ¿No tienes cuenta?{" "}
+              Don't have an account?{" "}
               <Link href="/signup" className="font-semibold text-[#a855f7] hover:underline">
-                Crear cuenta
+                Create account
               </Link>
             </p>
           </div>

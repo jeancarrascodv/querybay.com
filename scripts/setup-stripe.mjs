@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Crea los 3 productos de Querybay en Stripe con sus precios mensual/anual
-// y escribe los Price IDs resultantes en .env.local.
+// Creates the 3 Querybay products in Stripe with monthly and yearly prices,
+// and writes the resulting Price IDs back to .env.local.
 //
-// Uso:
+// Usage:
 //   node scripts/setup-stripe.mjs
 //
-// Requiere STRIPE_SECRET_KEY válida en .env.local (empezando con sk_test_ o sk_live_).
+// Requires a valid STRIPE_SECRET_KEY in .env.local (starting with sk_test_ or sk_live_).
 
 import Stripe from "stripe";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -27,43 +27,43 @@ for (const line of envLines) {
 const secretKey = env.STRIPE_SECRET_KEY;
 if (!secretKey || !/^sk_(test|live)_/.test(secretKey)) {
   console.error(
-    "\x1b[31m[error]\x1b[0m STRIPE_SECRET_KEY en .env.local no tiene un formato válido.",
+    "\x1b[31m[error]\x1b[0m STRIPE_SECRET_KEY in .env.local is not valid.",
   );
   console.error(
-    "       Debe empezar con 'sk_test_' (recomendado) o 'sk_live_'.",
+    "       It must start with 'sk_test_' (recommended) or 'sk_live_'.",
   );
-  console.error(`       Valor actual: ${secretKey ?? "(vacío)"}`);
+  console.error(`       Current value: ${secretKey ?? "(empty)"}`);
   process.exit(1);
 }
 
 const isLive = secretKey.startsWith("sk_live_");
 if (isLive) {
-  console.log("\x1b[33m[warn]\x1b[0m Estás usando una clave LIVE. Creará productos reales.");
-  console.log("       Cancela con Ctrl+C si no era la intención. Esperando 5s...");
+  console.log("\x1b[33m[warn]\x1b[0m You're using a LIVE key. Real products will be created.");
+  console.log("       Cancel with Ctrl+C if this was not intended. Waiting 5s...");
   await new Promise((r) => setTimeout(r, 5000));
 }
 
 const stripe = new Stripe(secretKey, { apiVersion: "2026-03-25.dahlia" });
 
-// --- Definición de productos ---
-// Precios mensuales base; el anual aplica 15% descuento sobre 12 meses.
+// --- Product definitions ---
+// Monthly base prices; yearly applies a 15% discount over 12 months.
 const PLANS = [
   {
     key: "OUTREACH",
     name: "Outreach",
-    description: "Campañas multicanal gestionadas",
-    monthly: 1490,
+    description: "Managed multichannel outbound campaigns",
+    monthly: 390,
   },
   {
     key: "GROWTH",
     name: "Growth",
-    description: "Stack completo: outreach + ads + CRO",
-    monthly: 3490,
+    description: "Full growth stack: outreach + paid ads + CRO",
+    monthly: 650,
   },
   {
     key: "TALENT",
     name: "Talent",
-    description: "Contratación full-time LATAM / Ghana",
+    description: "Full-time remote hiring in LATAM & Ghana",
     monthly: 1200,
   },
 ];
@@ -73,7 +73,7 @@ const CURRENCY = "usd";
 const results = {}; // { OUTREACH_MONTHLY: "price_...", ... }
 
 for (const plan of PLANS) {
-  console.log(`\n→ Creando producto: ${plan.name}`);
+  console.log(`\n→ Creating product: ${plan.name}`);
   const product = await stripe.products.create({
     name: plan.name,
     description: plan.description,
@@ -86,9 +86,9 @@ for (const plan of PLANS) {
     unit_amount: plan.monthly * 100,
     currency: CURRENCY,
     recurring: { interval: "month" },
-    nickname: `${plan.name} mensual`,
+    nickname: `${plan.name} monthly`,
   });
-  console.log(`  price mensual: ${monthlyPrice.id} ($${plan.monthly}/mes)`);
+  console.log(`  monthly price: ${monthlyPrice.id} ($${plan.monthly}/mo)`);
 
   const yearlyAmount = Math.round(plan.monthly * 12 * 0.85);
   const yearlyPrice = await stripe.prices.create({
@@ -96,15 +96,15 @@ for (const plan of PLANS) {
     unit_amount: yearlyAmount * 100,
     currency: CURRENCY,
     recurring: { interval: "year" },
-    nickname: `${plan.name} anual`,
+    nickname: `${plan.name} yearly`,
   });
-  console.log(`  price anual:   ${yearlyPrice.id} ($${yearlyAmount}/año, 15% off)`);
+  console.log(`  yearly price:  ${yearlyPrice.id} ($${yearlyAmount}/yr, 15% off)`);
 
   results[`${plan.key}_MONTHLY`] = monthlyPrice.id;
   results[`${plan.key}_YEARLY`] = yearlyPrice.id;
 }
 
-// --- Escribir de vuelta a .env.local ---
+// --- Write back to .env.local ---
 let updatedEnv = envRaw;
 for (const [suffix, priceId] of Object.entries(results)) {
   const key = `STRIPE_PRICE_${suffix}`;
@@ -118,9 +118,9 @@ for (const [suffix, priceId] of Object.entries(results)) {
 
 writeFileSync(ENV_PATH, updatedEnv);
 
-console.log("\n\x1b[32m✓\x1b[0m Price IDs escritos en .env.local");
-console.log("\nResumen:");
+console.log("\n\x1b[32m✓\x1b[0m Price IDs written to .env.local");
+console.log("\nSummary:");
 for (const [k, v] of Object.entries(results)) {
   console.log(`  STRIPE_PRICE_${k}=${v}`);
 }
-console.log("\nSiguiente: npm run dev y prueba el checkout.");
+console.log("\nNext: npm run dev and test the checkout flow.");

@@ -23,11 +23,11 @@ const SuccessPage = async ({
             </svg>
           </div>
           <h1 className="mb-3 text-3xl font-bold tracking-tight text-black sm:text-4xl dark:text-white">
-            ¡Pago confirmado!
+            Payment confirmed!
           </h1>
           <p className="mb-8 text-sm text-black/60 sm:text-base dark:text-white/60">
-            Gracias por tu contratación. Hemos enviado el recibo a tu correo y
-            nuestro equipo te contactará en las próximas 24h para arrancar el
+            Thanks for your subscription. We've emailed your receipt and our
+            team will reach out within the next 24 hours to kick off your
             onboarding.
           </p>
           {session_id && (
@@ -39,7 +39,7 @@ const SuccessPage = async ({
             href="/"
             className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-8 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
           >
-            Volver al inicio
+            Back to home
           </Link>
         </div>
       </div>

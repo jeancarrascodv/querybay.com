@@ -7,14 +7,14 @@ export async function POST(req: NextRequest) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!secret) {
     return NextResponse.json(
-      { error: "STRIPE_WEBHOOK_SECRET no configurado" },
+      { error: "STRIPE_WEBHOOK_SECRET is not configured" },
       { status: 500 },
     );
   }
 
   const signature = req.headers.get("stripe-signature");
   if (!signature) {
-    return NextResponse.json({ error: "Falta stripe-signature" }, { status: 400 });
+    return NextResponse.json({ error: "Missing stripe-signature header" }, { status: 400 });
   }
 
   const rawBody = await req.text();
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   try {
     event = stripe.webhooks.constructEvent(rawBody, signature, secret);
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Firma inválida";
+    const message = err instanceof Error ? err.message : "Invalid signature";
     console.error("[stripe/webhook] signature verification failed:", message);
     return NextResponse.json({ error: message }, { status: 400 });
   }
@@ -31,13 +31,13 @@ export async function POST(req: NextRequest) {
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object;
-      console.log("[stripe/webhook] checkout completado:", {
+      console.log("[stripe/webhook] checkout completed:", {
         id: session.id,
         customer: session.customer,
         subscription: session.subscription,
         metadata: session.metadata,
       });
-      // TODO: persistir en base de datos cuando exista (usuario → suscripción)
+      // TODO: persist to database once it exists (user → subscription)
       break;
     }
     case "customer.subscription.created":
@@ -53,14 +53,14 @@ export async function POST(req: NextRequest) {
     }
     case "invoice.payment_failed": {
       const invoice = event.data.object;
-      console.warn("[stripe/webhook] pago fallido:", {
+      console.warn("[stripe/webhook] payment failed:", {
         id: invoice.id,
         customer: invoice.customer,
       });
       break;
     }
     default:
-      console.log(`[stripe/webhook] evento no manejado: ${event.type}`);
+      console.log(`[stripe/webhook] unhandled event: ${event.type}`);
   }
 
   return NextResponse.json({ received: true });

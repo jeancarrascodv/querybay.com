@@ -2,33 +2,33 @@ const regions = [
   {
     flag: "🌎",
     name: "LATAM",
-    countries: "México · Colombia · Argentina · Perú · Chile",
-    tagline: "Misma zona horaria que EE.UU., bilingües nativos.",
+    countries: "Mexico · Colombia · Argentina · Peru · Chile",
+    tagline: "Same time zone as the US, fluent bilingual talent.",
   },
   {
     flag: "🌍",
     name: "Ghana",
     countries: "Accra · Kumasi · Takoradi",
-    tagline: "Hub de talento anglo-africano, overlap con UE y EE.UU.",
+    tagline: "English-speaking African talent hub, EU + US overlap.",
   },
 ];
 
 const benefits = [
   {
-    title: "Contratación en 7-14 días",
-    desc: "Sourcing, vetting técnico y cultural, entrevistas coordinadas y onboarding listo en menos de dos semanas.",
+    title: "Hired in 7-14 days",
+    desc: "Sourcing, technical and cultural vetting, coordinated interviews, and onboarding ready in under two weeks.",
   },
   {
-    title: "40-70% menos costo",
-    desc: "Accede a talento senior a una fracción del costo de EE.UU. o Europa, sin sacrificar calidad ni seniority.",
+    title: "40-70% lower cost",
+    desc: "Access senior talent at a fraction of US or European rates — without compromising on quality or seniority.",
   },
   {
-    title: "HR, nómina y legal incluidos",
-    desc: "Nos encargamos de contratos locales, pagos internacionales, beneficios y compliance. Tú sólo pagas una factura.",
+    title: "HR, payroll & legal included",
+    desc: "We handle local contracts, international payments, benefits, and compliance. You pay a single invoice.",
   },
   {
-    title: "Reemplazo garantizado",
-    desc: "Si alguien no encaja, lo reemplazamos sin costo adicional en los primeros 90 días.",
+    title: "Replacement guarantee",
+    desc: "If someone isn't the right fit, we replace them at no extra cost within the first 90 days.",
   },
 ];
 
@@ -77,7 +77,7 @@ const AboutSectionTwo = () => {
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-black dark:text-white">
-                    Roles que contratamos
+                    Roles we hire
                   </div>
                 </div>
               </div>
@@ -90,7 +90,7 @@ const AboutSectionTwo = () => {
                   "Marketing Ops",
                   "Appointment Setter",
                   "Data Analyst",
-                  "Diseño / UI",
+                  "Design / UI",
                   "Media Buyer",
                 ].map((role) => (
                   <span
@@ -106,18 +106,18 @@ const AboutSectionTwo = () => {
 
           <div className="order-1 lg:order-2">
             <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-              Talento remoto
+              Remote talent
             </span>
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-              Equipos dedicados en{" "}
+              Dedicated teams across{" "}
               <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-                LATAM y Ghana
+                LATAM and Ghana
               </span>
             </h2>
             <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-              Construimos tu equipo con profesionales bilingües pre-seleccionados
-              en Latinoamérica y Ghana. Tú te enfocas en crecer; nosotros nos
-              encargamos de sourcing, contratación, payroll y compliance.
+              We build your team with pre-vetted bilingual professionals from
+              Latin America and Ghana. You focus on growing; we handle
+              sourcing, hiring, payroll, and compliance.
             </p>
 
             <div className="space-y-5">

@@ -8,22 +8,22 @@ const NewsLatterBox = () => {
   return (
     <div className="shadow-three dark:bg-gray-dark relative z-10 rounded-xs bg-white p-8 sm:p-11 lg:p-8 xl:p-11">
       <h3 className="mb-4 text-2xl leading-tight font-bold text-black dark:text-white">
-        Recibe plantillas y casos de éxito
+        Get templates and case studies
       </h3>
       <p className="border-body-color/25 text-body-color mb-11 border-b pb-11 text-base leading-relaxed dark:border-white/25">
-        Obtén 3 plantillas de outreach y un checklist para comenzar campañas en
-        LinkedIn y email frío. Sin spam, solo contenido útil.
+        Get 3 outreach templates and a checklist to start campaigns on
+        LinkedIn and cold email. No spam — useful content only.
       </p>
       <div>
         <input
           type="email"
           name="email"
-          placeholder="tu@empresa.com"
+          placeholder="you@company.com"
           className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
         />
         <input
           type="submit"
-          value="Recibir plantillas"
+          value="Get the templates"
           className="bg-primary shadow-submit hover:bg-primary/90 dark:shadow-submit-dark mb-5 flex w-full cursor-pointer items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
         />
         <p className="text-body-color dark:text-body-color-dark text-center text-base leading-relaxed">

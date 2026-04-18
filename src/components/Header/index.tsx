@@ -67,13 +67,13 @@ const Header = () => {
               href="/signin"
               className="hidden text-sm font-medium text-black/70 transition hover:text-black md:block dark:text-white/70 dark:hover:text-white"
             >
-              Iniciar sesión
+              Sign in
             </Link>
             <Link
               href="/pagos"
               className="hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.8)] md:block"
             >
-              Empezar
+              Get started
             </Link>
             <ThemeToggler />
 
@@ -123,7 +123,7 @@ const Header = () => {
                   onClick={() => setNavbarOpen(false)}
                   className="block rounded-lg px-3 py-2 text-sm font-medium text-black/70 dark:text-white/70"
                 >
-                  Iniciar sesión
+                  Sign in
                 </Link>
               </li>
               <li>
@@ -132,7 +132,7 @@ const Header = () => {
                   onClick={() => setNavbarOpen(false)}
                   className="block rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-center text-sm font-semibold text-white"
                 >
-                  Empezar
+                  Get started
                 </Link>
               </li>
             </ul>

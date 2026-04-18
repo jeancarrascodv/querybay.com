@@ -5,17 +5,17 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Nosotros | QueryBay",
+  title: "About | QueryBay",
   description:
-    "Somos un equipo multicultural enfocado en growth, outreach y talento remoto en LATAM y Ghana.",
+    "We're a multicultural team focused on growth, outreach, and remote talent across LATAM and Ghana.",
 };
 
 const AboutPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="Sobre QueryBay"
-        description="Construimos motores de adquisición y equipos remotos para empresas que quieren crecer sin fricción. Operamos entre Latinoamérica y Ghana con un enfoque obsesivo en resultados."
+        pageName="About QueryBay"
+        description="We build acquisition engines and remote teams for companies that want to grow without friction. We operate between Latin America and Ghana with an obsessive focus on results."
       />
       <AboutSectionOne />
       <AboutSectionTwo />

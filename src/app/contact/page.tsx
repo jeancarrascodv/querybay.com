@@ -4,17 +4,17 @@ import Contact from "@/components/Contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contacto | QueryBay",
+  title: "Contact | QueryBay",
   description:
-    "Habla con nuestro equipo. Auditamos tu funnel gratis y te damos un plan a 90 días.",
+    "Talk to our team. We'll audit your funnel for free and give you a 90-day plan.",
 };
 
 const ContactPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="Contacto"
-        description="Agenda una llamada de 30 minutos. Auditamos tu outreach, te compartimos plantillas y armamos un plan a 90 días — sin compromiso."
+        pageName="Contact"
+        description="Book a 30-minute call. We'll audit your outreach, share proven templates, and build a 90-day plan — no commitment."
       />
       <Contact />
     </>

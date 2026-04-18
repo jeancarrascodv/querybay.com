@@ -17,7 +17,7 @@ const PricingBox = (props: {
         <>
           <div className="absolute -inset-px rounded-3xl bg-[linear-gradient(140deg,#6366f1,#a855f7,#ec4899)] blur-sm" />
           <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-4 py-1 text-xs font-semibold text-white shadow-lg">
-            Más popular
+            Most popular
           </div>
         </>
       )}
@@ -51,7 +51,7 @@ const PricingBox = (props: {
               : "border border-black/10 bg-white text-black hover:border-black/30 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30"
           }`}
         >
-          Contratar plan
+          Choose plan
         </Link>
 
         <div className="flex-1">{children}</div>

@@ -14,17 +14,17 @@ const Features = () => {
       <div className="container">
         <div className="mx-auto mb-16 max-w-[720px] text-center">
           <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-            Servicios
+            Services
           </span>
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-            Todo lo que necesitas para{" "}
+            Everything you need to{" "}
             <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-              crecer sin fricción
+              grow without friction
             </span>
           </h2>
           <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
-            Un stack completo de growth, outreach y talento remoto. Elige los
-            servicios que necesitas o combínalos para escalar más rápido.
+            A full stack of growth, outreach, and remote talent. Pick the
+            services you need or combine them to scale faster.
           </p>
         </div>
 

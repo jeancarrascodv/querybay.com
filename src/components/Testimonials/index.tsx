@@ -5,9 +5,9 @@ const testimonialData: Testimonial[] = [
   {
     id: 1,
     name: "Mariana Ruiz",
-    designation: "Head of Growth · SaaS B2B",
+    designation: "Head of Growth · B2B SaaS",
     content:
-      "Pasamos de 3 a 27 reuniones calificadas al mes en 90 días. La orquestación multicanal les da una ventaja real sobre agencias que sólo hacen LinkedIn.",
+      "We went from 3 to 27 qualified meetings per month in 90 days. Their multichannel orchestration gives them a real edge over agencies that only do LinkedIn.",
     image: "/images/testimonials/auth-01.png",
     star: 5,
   },
@@ -16,16 +16,16 @@ const testimonialData: Testimonial[] = [
     name: "Kwame Boateng",
     designation: "COO · FinTech Accra",
     content:
-      "Contratamos 6 SDRs bilingües en 12 días. El vetting técnico y cultural fue impecable; onboarding y payroll se resolvieron solos.",
+      "We hired 6 bilingual SDRs in 12 days. Their technical and cultural vetting was flawless; onboarding and payroll just worked.",
     image: "/images/testimonials/auth-02.png",
     star: 5,
   },
   {
     id: 3,
     name: "Diego Fernández",
-    designation: "Founder · Agencia de performance",
+    designation: "Founder · Performance Agency",
     content:
-      "El equipo de LATAM que armaron trabaja en mi zona horaria y a una fracción del costo. Liberamos 40h/semana para enfocarnos en estrategia.",
+      "The LATAM team they put together works in my time zone at a fraction of the cost. We freed up 40 hours a week to focus on strategy.",
     image: "/images/testimonials/auth-03.png",
     star: 5,
   },
@@ -41,16 +41,16 @@ const Testimonials = () => {
       <div className="container">
         <div className="mx-auto mb-16 max-w-[720px] text-center">
           <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-            Clientes
+            Customers
           </span>
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-            Historias reales de{" "}
+            Real stories of{" "}
             <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-              crecimiento
+              growth
             </span>
           </h2>
           <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
-            Equipos que escalaron outreach y contrataron talento con nosotros.
+            Teams that scaled their outreach and hired remote talent with us.
           </p>
         </div>
 

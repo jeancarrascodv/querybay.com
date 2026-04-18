@@ -18,17 +18,17 @@ const Pricing = () => {
       <div className="container">
         <div className="mx-auto mb-12 max-w-[720px] text-center">
           <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-            Planes
+            Pricing
           </span>
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-            Precios simples y{" "}
+            Simple, transparent{" "}
             <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-              transparentes
+              pricing
             </span>
           </h2>
           <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
-            Elige el plan que mejor se ajusta a tu negocio. Sin contratos
-            largos, sin sorpresas. Cancelación flexible.
+            Pick the plan that fits your business. No long contracts, no
+            surprises. Cancel anytime.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ const Pricing = () => {
                   : "text-black/60 dark:text-white/60"
               }`}
             >
-              Mensual
+              Monthly
             </button>
             <button
               onClick={() => setIsMonthly(false)}
@@ -52,7 +52,7 @@ const Pricing = () => {
                   : "text-black/60 dark:text-white/60"
               }`}
             >
-              Anual{" "}
+              Yearly{" "}
               <span className="ml-1 text-xs opacity-80">-15%</span>
             </button>
           </div>
@@ -61,55 +61,55 @@ const Pricing = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
             packageName="Outreach"
-            price={isMonthly ? "1,490" : "15,200"}
-            duration={isMonthly ? "mes" : "año"}
-            subtitle="Campañas multicanal gestionadas para agendar reuniones calificadas todos los meses."
+            price={isMonthly ? "390" : "3,978"}
+            duration={isMonthly ? "mo" : "yr"}
+            subtitle="Managed multichannel campaigns that book qualified meetings every month."
           >
-            <OfferList text="LinkedIn + Email gestionados" status="active" />
-            <OfferList text="Copy personalizado con IA" status="active" />
-            <OfferList text="Hasta 1.000 leads/mes" status="active" />
-            <OfferList text="Reporting semanal" status="active" />
+            <OfferList text="Managed LinkedIn + Email" status="active" />
+            <OfferList text="AI-personalized copy" status="active" />
+            <OfferList text="Up to 1,000 leads/month" status="active" />
+            <OfferList text="Weekly reporting" status="active" />
             <OfferList text="WhatsApp + cold calling" status="inactive" />
-            <OfferList text="Account manager dedicado" status="inactive" />
+            <OfferList text="Dedicated account manager" status="inactive" />
           </PricingBox>
 
           <PricingBox
             packageName="Growth"
-            price={isMonthly ? "3,490" : "35,600"}
-            duration={isMonthly ? "mes" : "año"}
-            subtitle="Stack completo de growth: outreach + ads + CRO + analítica con un equipo dedicado."
+            price={isMonthly ? "650" : "6,630"}
+            duration={isMonthly ? "mo" : "yr"}
+            subtitle="The full growth stack: outreach + ads + CRO + analytics with a dedicated team."
             highlighted
           >
-            <OfferList text="Todo lo de Outreach" status="active" />
+            <OfferList text="Everything in Outreach" status="active" />
             <OfferList text="WhatsApp + cold calling" status="active" />
             <OfferList text="Paid ads (Meta, LinkedIn, Google)" status="active" />
             <OfferList text="Landing pages + CRO" status="active" />
-            <OfferList text="Hasta 5.000 leads/mes" status="active" />
-            <OfferList text="Account manager dedicado" status="active" />
+            <OfferList text="Up to 5,000 leads/month" status="active" />
+            <OfferList text="Dedicated account manager" status="active" />
           </PricingBox>
 
           <PricingBox
             packageName="Talent"
-            price={isMonthly ? "desde 1,200" : "desde 13,000"}
-            duration={isMonthly ? "mes" : "año"}
-            subtitle="Contratación de profesionales remotos full-time en LATAM y Ghana con payroll incluido."
+            price={isMonthly ? "from 1,200" : "from 12,240"}
+            duration={isMonthly ? "mo" : "yr"}
+            subtitle="Full-time remote professionals from LATAM and Ghana, payroll included."
           >
-            <OfferList text="Sourcing + vetting incluido" status="active" />
-            <OfferList text="Contratación en 7-14 días" status="active" />
-            <OfferList text="Payroll y compliance global" status="active" />
-            <OfferList text="Beneficios y contratos" status="active" />
-            <OfferList text="Reemplazo garantizado 90 días" status="active" />
-            <OfferList text="Sin fee de sourcing" status="active" />
+            <OfferList text="Sourcing + vetting included" status="active" />
+            <OfferList text="Hired in 7-14 days" status="active" />
+            <OfferList text="Global payroll & compliance" status="active" />
+            <OfferList text="Benefits and contracts" status="active" />
+            <OfferList text="90-day replacement guarantee" status="active" />
+            <OfferList text="No sourcing fees" status="active" />
           </PricingBox>
         </div>
 
         <p className="mt-10 text-center text-sm text-black/50 dark:text-white/50">
-          ¿Necesitas algo a medida?{" "}
+          Need something custom?{" "}
           <a
             href="#contact"
             className="font-semibold text-black underline-offset-4 hover:underline dark:text-white"
           >
-            Habla con nuestro equipo
+            Talk to our team
           </a>
         </p>
       </div>

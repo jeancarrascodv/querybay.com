@@ -24,8 +24,8 @@ const Footer = () => {
               QueryBay
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-black/60 dark:text-white/60">
-              Growth, outreach multicanal y talento remoto en LATAM y Ghana.
-              Escalamos tu operación sin fricción ni overhead.
+              Growth, multichannel outreach, and remote talent in LATAM and
+              Ghana. We scale your operation without the friction or overhead.
             </p>
             <div className="flex items-center gap-3">
               {[
@@ -69,15 +69,15 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Servicios */}
+          {/* Services */}
           <div>
             <h3 className="mb-4 text-sm font-semibold text-black dark:text-white">
-              Servicios
+              Services
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/#features" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Outreach Multicanal
+                  Multichannel Outreach
                 </Link>
               </li>
               <li>
@@ -92,31 +92,31 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/#features" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Reclutamiento LATAM + Ghana
+                  LATAM + Ghana Hiring
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Empresa */}
+          {/* Company */}
           <div>
             <h3 className="mb-4 text-sm font-semibold text-black dark:text-white">
-              Empresa
+              Company
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/about" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Nosotros
+                  About
                 </Link>
               </li>
               <li>
                 <Link href="/#pricing" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Planes
+                  Pricing
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Contacto
+                  Contact
                 </Link>
               </li>
               <li>
@@ -127,25 +127,25 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Plataforma */}
+          {/* Platform */}
           <div>
             <h3 className="mb-4 text-sm font-semibold text-black dark:text-white">
-              Plataforma
+              Platform
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/signin" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Iniciar sesión
+                  Sign in
                 </Link>
               </li>
               <li>
                 <Link href="/signup" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Crear cuenta
+                  Create account
                 </Link>
               </li>
               <li>
                 <Link href="/pagos" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Pagos
+                  Checkout
                 </Link>
               </li>
             </ul>
@@ -153,13 +153,13 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-black/5 py-8 text-sm text-black/50 sm:flex-row dark:border-white/10 dark:text-white/50">
-          <p>© {new Date().getFullYear()} QueryBay. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} QueryBay. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-black dark:hover:text-white">
-              Términos
+              Terms
             </Link>
             <Link href="#" className="hover:text-black dark:hover:text-white">
-              Privacidad
+              Privacy
             </Link>
           </div>
         </div>

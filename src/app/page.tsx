@@ -9,9 +9,9 @@ import Testimonials from "@/components/Testimonials";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "QueryBay — Growth, Outreach y Talento LATAM + Ghana",
+  title: "QueryBay — Growth, Outreach & Remote Talent from LATAM + Ghana",
   description:
-    "Outreach multicanal, growth marketing, outsourcing y reclutamiento de talento remoto en LATAM y Ghana. Escala sin fricción.",
+    "Multichannel outreach, growth marketing, outsourcing, and remote talent hiring across LATAM and Ghana. Scale your business without the overhead.",
 };
 
 export default function Home() {

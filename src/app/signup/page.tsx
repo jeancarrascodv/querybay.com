@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Crear cuenta | QueryBay",
-  description: "Crea tu cuenta en QueryBay para acceder al portal de cliente.",
+  title: "Create account | QueryBay",
+  description: "Create your QueryBay account to access the customer portal.",
 };
 
 const SignupPage = () => {
@@ -18,10 +18,10 @@ const SignupPage = () => {
         <div className="mx-auto max-w-[500px] rounded-3xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl sm:p-10 dark:border-white/10 dark:bg-[#0f1220]/80">
           <div className="mb-8 text-center">
             <h1 className="mb-2 text-2xl font-bold tracking-tight text-black sm:text-3xl dark:text-white">
-              Crear cuenta
+              Create account
             </h1>
             <p className="text-sm text-black/60 dark:text-white/60">
-              Empieza gratis. Sin tarjeta de crédito.
+              Start for free. No credit card required.
             </p>
           </div>
 
@@ -45,19 +45,19 @@ const SignupPage = () => {
 
           <div className="mb-6 flex items-center gap-3">
             <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
-            <span className="text-xs text-black/40 dark:text-white/40">o con email</span>
+            <span className="text-xs text-black/40 dark:text-white/40">or with email</span>
             <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
           </div>
 
           <form className="space-y-5">
             <div>
               <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                Nombre completo
+                Full name
               </label>
               <input
                 id="name"
                 type="text"
-                placeholder="Tu nombre"
+                placeholder="Your name"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
               />
             </div>
@@ -68,42 +68,42 @@ const SignupPage = () => {
               <input
                 id="email"
                 type="email"
-                placeholder="tu@empresa.com"
+                placeholder="you@company.com"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
               />
             </div>
             <div>
               <label htmlFor="password" className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60">
-                Contraseña
+                Password
               </label>
               <input
                 id="password"
                 type="password"
-                placeholder="Al menos 8 caracteres"
+                placeholder="At least 8 characters"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
               />
             </div>
 
             <label className="flex cursor-pointer items-start gap-2 text-xs text-black/60 dark:text-white/60">
               <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-black/20 text-[#a855f7] focus:ring-[#a855f7]" />
-              Acepto los{" "}
-              <a href="#" className="text-[#a855f7] hover:underline">términos</a>{" "}
-              y la{" "}
-              <a href="#" className="text-[#a855f7] hover:underline">política de privacidad</a>.
+              I agree to the{" "}
+              <a href="#" className="text-[#a855f7] hover:underline">Terms</a>{" "}
+              and{" "}
+              <a href="#" className="text-[#a855f7] hover:underline">Privacy Policy</a>.
             </label>
 
             <button
               type="submit"
               className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
             >
-              Crear cuenta
+              Create account
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-black/60 dark:text-white/60">
-            ¿Ya tienes cuenta?{" "}
+            Already have an account?{" "}
             <Link href="/signin" className="font-semibold text-[#a855f7] hover:underline">
-              Iniciar sesión
+              Sign in
             </Link>
           </p>
         </div>

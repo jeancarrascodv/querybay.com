@@ -1,22 +1,22 @@
 const channels = [
   {
     name: "LinkedIn",
-    desc: "Connection requests + InMails + contenido",
+    desc: "Connection requests, InMails, and content",
     color: "from-[#0077b5] to-[#00a0dc]",
   },
   {
     name: "Cold Email",
-    desc: "Dominios calentados, copy personalizado con IA",
+    desc: "Warmed-up domains, AI-personalized copy",
     color: "from-[#ef4444] to-[#f97316]",
   },
   {
     name: "WhatsApp",
-    desc: "Nurturing conversacional y cierre directo",
+    desc: "Conversational nurturing and direct closing",
     color: "from-[#25d366] to-[#128c7e]",
   },
   {
     name: "Voice & Video",
-    desc: "Cold calling, VSLs y agentes de IA",
+    desc: "Cold calling, VSLs, and AI voice agents",
     color: "from-[#a855f7] to-[#ec4899]",
   },
 ];
@@ -31,18 +31,18 @@ const AboutSectionOne = () => {
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <div>
             <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-              Outreach Multicanal
+              Multichannel Outreach
             </span>
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-              Llegamos a tus prospectos{" "}
+              We reach your prospects{" "}
               <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-                donde sea que estén
+                wherever they are
               </span>
             </h2>
             <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-              Dejamos de depender de un solo canal. Orquestamos campañas
-              coordinadas en LinkedIn, email, WhatsApp y voz para maximizar la
-              probabilidad de conversación con cada cuenta objetivo.
+              We don't rely on a single channel. We orchestrate coordinated
+              campaigns across LinkedIn, email, WhatsApp, and voice to maximize
+              the chance of a conversation with every target account.
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -72,10 +72,10 @@ const AboutSectionOne = () => {
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <div className="text-xs text-black/50 dark:text-white/50">
-                    Pipeline semanal
+                    Weekly pipeline
                   </div>
                   <div className="text-2xl font-bold text-black dark:text-white">
-                    347 respuestas
+                    347 replies
                   </div>
                 </div>
                 <div className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
@@ -88,7 +88,7 @@ const AboutSectionOne = () => {
                   { label: "LinkedIn", value: 78, color: "from-[#6366f1] to-[#8b5cf6]" },
                   { label: "Email", value: 92, color: "from-[#a855f7] to-[#ec4899]" },
                   { label: "WhatsApp", value: 54, color: "from-[#10b981] to-[#06b6d4]" },
-                  { label: "Voz", value: 34, color: "from-[#f59e0b] to-[#ef4444]" },
+                  { label: "Voice", value: 34, color: "from-[#f59e0b] to-[#ef4444]" },
                 ].map((row) => (
                   <div key={row.label}>
                     <div className="mb-1 flex items-center justify-between text-xs">
@@ -111,11 +111,11 @@ const AboutSectionOne = () => {
 
               <div className="mt-6 grid grid-cols-3 gap-3 border-t border-black/5 pt-6 dark:border-white/10">
                 <div>
-                  <div className="text-xs text-black/50 dark:text-white/50">Reuniones</div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Meetings</div>
                   <div className="text-lg font-bold text-black dark:text-white">48</div>
                 </div>
                 <div>
-                  <div className="text-xs text-black/50 dark:text-white/50">CTR email</div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Email CTR</div>
                   <div className="text-lg font-bold text-black dark:text-white">12.8%</div>
                 </div>
                 <div>
