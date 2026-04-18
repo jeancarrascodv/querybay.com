@@ -40,7 +40,7 @@ const AboutSectionOne = () => {
               </span>
             </h2>
             <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-              We don't rely on a single channel. We orchestrate coordinated
+              We don&apos;t rely on a single channel. We orchestrate coordinated
               campaigns across LinkedIn, email, WhatsApp, and voice to maximize
               the chance of a conversation with every target account.
             </p>

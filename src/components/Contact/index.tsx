@@ -22,7 +22,7 @@ const Contact = () => {
                   </span>
                 </h2>
                 <p className="mb-8 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-                  Book a free 30-min call. We'll audit your funnel, share 3
+                  Book a free 30-min call. We&apos;ll audit your funnel, share 3
                   proven templates, and hand you a concrete action plan — no
                   strings attached.
                 </p>
@@ -99,7 +99,7 @@ const Contact = () => {
                     htmlFor="interest"
                     className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
                   >
-                    I'm interested in
+                    I&apos;m interested in
                   </label>
                   <select
                     id="interest"
