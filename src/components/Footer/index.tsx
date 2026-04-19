@@ -155,10 +155,10 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-4 border-t border-black/5 py-8 text-sm text-black/50 sm:flex-row dark:border-white/10 dark:text-white/50">
           <p>© {new Date().getFullYear()} QueryBay. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-black dark:hover:text-white">
+            <Link href="/terms" className="hover:text-black dark:hover:text-white">
               Terms
             </Link>
-            <Link href="#" className="hover:text-black dark:hover:text-white">
+            <Link href="/privacy" className="hover:text-black dark:hover:text-white">
               Privacy
             </Link>
           </div>
