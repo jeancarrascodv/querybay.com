@@ -103,7 +103,7 @@ const BlogDetailsPage = () => {
                 </div>
                 <div>
                   <p className="text-body-color mb-10 text-base leading-relaxed font-medium sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                    In this post, we outline five proven tactics to build a reliable pipeline of qualified leads using LinkedIn outreach and cold email — including templates you can reuse today.
+                    In this post, we outline five proven tactics to build a reliable pipeline of qualified leads using LinkedIn outreach and cold email, including templates you can reuse today.
                   </p>
                   <div className="mb-10 w-full overflow-hidden rounded-sm">
                     <div className="relative aspect-97/60 w-full sm:aspect-97/44">

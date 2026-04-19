@@ -270,7 +270,7 @@ const CheckoutPage = () => {
                   </svg>
                   <p className="text-xs text-black/70 dark:text-white/70">
                     When you click <strong>Pay</strong>, you&apos;ll be redirected to
-                    Stripe&apos;s secure checkout. We never store your card — all
+                    Stripe&apos;s secure checkout. We never store your card. All
                     payment data is processed directly by Stripe (PCI-DSS Level
                     1, 3D Secure).
                   </p>

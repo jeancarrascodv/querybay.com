@@ -47,7 +47,7 @@ const Hero = () => {
           <p className="mx-auto mb-10 max-w-[680px] text-base leading-relaxed text-black/60 sm:text-lg md:text-xl dark:text-white/70">
             We book qualified meetings with coordinated campaigns across
             LinkedIn, email, WhatsApp, and calls. Then we build your team with
-            top-tier talent from LATAM and Ghana — no friction, no HR hassle,
+            top-tier talent from LATAM and Ghana. No friction, no HR hassle,
             no long commitments.
           </p>
 

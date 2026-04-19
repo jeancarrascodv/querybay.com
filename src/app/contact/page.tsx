@@ -14,7 +14,7 @@ const ContactPage = () => {
     <>
       <Breadcrumb
         pageName="Contact"
-        description="Book a 30-minute call. We'll audit your outreach, share proven templates, and build a 90-day plan — no commitment."
+        description="Book a 30-minute call. We'll audit your outreach, share proven templates, and build a 90-day plan. No commitment."
       />
       <Contact />
     </>

@@ -45,7 +45,7 @@ const SigninPage = () => {
                 </h2>
                 <p className="mb-8 text-sm leading-relaxed text-white/70">
                   Manage campaigns, track metrics, approve hires, and control
-                  payments — all from one place.
+                  payments, all from one place.
                 </p>
 
                 <div className="space-y-4">

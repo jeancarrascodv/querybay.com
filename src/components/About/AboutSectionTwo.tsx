@@ -20,7 +20,7 @@ const benefits = [
   },
   {
     title: "40-70% lower cost",
-    desc: "Access senior talent at a fraction of US or European rates — without compromising on quality or seniority.",
+    desc: "Access senior talent at a fraction of US or European rates, without compromising on quality or seniority.",
   },
   {
     title: "HR, payroll & legal included",

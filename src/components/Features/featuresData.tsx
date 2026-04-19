@@ -37,7 +37,7 @@ const featuresData: Feature[] = [
     ),
     title: "Service Outsourcing",
     paragraph:
-      "Dedicated teams of executive assistants, SDRs, customer support, and developers. You define the scope — we execute and manage.",
+      "Dedicated teams of executive assistants, SDRs, customer support, and developers. You define the scope; we execute and manage.",
   },
   {
     id: 4,
@@ -62,7 +62,7 @@ const featuresData: Feature[] = [
     ),
     title: "Payroll & Compliance",
     paragraph:
-      "Contracts, international payroll, benefits, and legal compliance — all included. One monthly invoice; we handle everything else.",
+      "Contracts, international payroll, benefits, and legal compliance, all included. One monthly invoice; we handle everything else.",
   },
   {
     id: 6,

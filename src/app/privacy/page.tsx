@@ -139,7 +139,7 @@ const PrivacyPage = () => {
                   others;
                 </li>
                 <li>
-                  <strong>Corporate transactions</strong> — in connection with
+                  <strong>Corporate transactions</strong>, in connection with
                   a merger, acquisition, financing, or sale of assets, subject
                   to customary confidentiality obligations.
                 </li>

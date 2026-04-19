@@ -12,7 +12,7 @@ const NewsLatterBox = () => {
       </h3>
       <p className="border-body-color/25 text-body-color mb-11 border-b pb-11 text-base leading-relaxed dark:border-white/25">
         Get 3 outreach templates and a checklist to start campaigns on
-        LinkedIn and cold email. No spam — useful content only.
+        LinkedIn and cold email. No spam, useful content only.
       </p>
       <div>
         <input
