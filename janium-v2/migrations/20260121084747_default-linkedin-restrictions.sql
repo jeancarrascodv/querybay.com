@@ -1,0 +1,1 @@
+ALTER TABLE "linked_in" ALTER COLUMN "weekly_restrictions" DROP NOT NULL;

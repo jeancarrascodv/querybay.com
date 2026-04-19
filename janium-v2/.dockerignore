@@ -1,0 +1,4 @@
+target/
+crates/
+frontend/
+!crates/container-service

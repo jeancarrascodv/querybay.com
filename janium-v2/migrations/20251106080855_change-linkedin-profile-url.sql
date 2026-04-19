@@ -1,0 +1,1 @@
+ALTER TABLE "linked_in" RENAME COLUMN "profile_url_handle" TO "linkedin_profile_url";

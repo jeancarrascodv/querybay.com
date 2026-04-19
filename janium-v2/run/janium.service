@@ -1,0 +1,15 @@
+[Unit]
+Description=Janium Service
+After=network.target podman.socket
+Requires=podman.socket
+
+[Service]
+Type=simple
+EnvironmentFile=/var/lib/janium/.env
+WorkingDirectory=/var/lib/janium/
+ExecStart=/usr/local/bin/janium
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

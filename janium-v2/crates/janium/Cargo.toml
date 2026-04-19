@@ -1,0 +1,89 @@
+[package]
+name = "janium"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arc-swap.workspace = true
+async-stream = "0.3"
+argon2.workspace = true
+array_map.workspace = true
+axum.workspace = true
+axum-server.workspace = true
+backtrace.workspace = true
+base64ct.workspace = true
+bollard.workspace = true
+brotli.workspace = true
+chrono.workspace = true
+clap.workspace = true
+compact_str.workspace = true
+container-service.workspace = true
+csv.workspace = true
+dashmap.workspace = true
+emojis.workspace = true
+enigo.workspace = true
+equivalent.workspace = true
+futures.workspace = true
+gql.workspace = true
+gql-axum.workspace = true
+http.workspace = true
+iddqd.workspace = true
+indexmap.workspace = true
+is_not.workspace = true
+jsonwebtoken.workspace = true
+janium-actors.workspace = true
+janium-derive.workspace = true
+janium-derive-core.workspace = true
+jiff.workspace = true
+jiff-sqlx.workspace = true
+lease.workspace = true
+# lettre.workspace = true
+liquid.workspace = true
+# mail-parser.workspace = true
+mimalloc.workspace = true
+openai-api-rs.workspace = true
+ormlite.workspace = true
+parking_lot.workspace = true
+petgraph.workspace = true
+quick_cache.workspace = true
+rand.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+rustls.workspace = true
+rustls-acme.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+smallvec.workspace = true
+sqlx.workspace = true
+strum.workspace = true
+tap.workspace = true
+testcontainers.workspace = true
+thirtyfour.workspace = true
+thiserror.workspace = true
+tiny-keccak.workspace = true
+tokio.workspace = true
+tokio-tungstenite.workspace = true
+tower-cookies.workspace = true
+tower-http = { version = "0.6.6", features = ["cors"] }
+tracing.workspace = true
+tracing-subscriber.workspace = true
+url.workspace = true
+uuid.workspace = true
+uuid-shuffler.workspace = true
+
+# hash implementations for detecting changes to structs
+seahash = "4.1.0"
+ahash = { version = "0.8.11", default-features = false }
+wyhash = { version = "0.6.0", default-features = false }
+t1ha = { version = "0.1.2", default-features = false }
+sha2 = "0.10"
+
+
+[dev-dependencies]
+test-log = "0.2.19"
+proptest = "1.9.0"
+rstest = "0.24"

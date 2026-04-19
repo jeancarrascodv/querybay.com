@@ -1,0 +1,55 @@
+/* ReactFlow Theme Customization */
+.dark-flow {
+  background-color: hsl(var(--background));
+}
+
+.dark-flow .react-flow__node {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.light-flow {
+  background-color: hsl(var(--background));
+}
+
+.light-flow .react-flow__node {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.react-flow__controls button {
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.react-flow__controls button:hover {
+  background-color: hsl(var(--accent));
+}
+
+/* Edge Styling */
+.react-flow__edge-path {
+  stroke-width: 2;
+  transition: all 0.2s;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: hsl(142.1 76.2% 36.3%) !important;
+  stroke-opacity: 1;
+}
+
+.react-flow__edge-path {
+  stroke-opacity: 0.75;
+}
+
+.edgebutton-foreignobject {
+  background: transparent;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+}

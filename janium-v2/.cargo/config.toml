@@ -1,0 +1,2 @@
+# Required because we use a custom compiler, so this don't mess with anyone's global target directory
+build.target-dir = "target"

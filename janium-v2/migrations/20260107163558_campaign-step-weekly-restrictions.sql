@@ -1,0 +1,1 @@
+alter table "campaign_step" alter column "weekly_restrictions" drop not null;

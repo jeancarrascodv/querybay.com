@@ -1,0 +1,844 @@
+"""
+Indicates that an Input Object is a OneOf Input Object (and thus requires exactly one of its field be provided)
+"""
+directive @oneOf on INPUT_OBJECT
+
+input AddCampaignContact {
+  contactId: UUID!
+  extraData: ExtraData
+}
+
+type AndFilter {
+  and: [CampaignStepLinkFilter!]!
+}
+
+input AndFilterInput {
+  and: [CampaignStepLinkFilterInput!]!
+}
+
+type Campaign {
+  id: UUID!
+  teamId: UUID!
+  name: String!
+  active: Boolean!
+  allowedMessagingDayTimes: WeeklyRestrictions
+  defaultEmailGroup: UUID
+  linkedinIds: [UUID!]!
+}
+
+type CampaignContact {
+  id: UUID!
+  contactId: UUID!
+  stepId: UUID!
+  status: CampaignContactStatus!
+  extraData: ExtraData
+  lastAction: Timestamp!
+  contact: Contact
+  templateData: JSONObject!
+}
+
+"""
+Contacts are never in a status where they are waiting on a link. Link traversals happen instantly. The step after a link traversal may be backed up due to limits, but will definitely be the next step that is executed.
+"""
+enum CampaignContactStatus {
+  """
+  Contacts are only pending start before the step is completed due to some constraint limits like the number of messages sent per day
+  """
+  PENDING_START_STEP
+
+  """
+  When the contact has failed to start a step (due to missing template data, bad email address, etc.), and something needs to be fixed before it can continue
+  """
+  PENDING_START_STEP_ERROR
+
+  """
+  When any step is currently being executed (can take from milliseconds to several minutes)
+  """
+  IN_PROGRESS
+
+  """
+  When the contact has failed to complete a step (due to missing template data, bad email address, etc.), and something needs to be fixed before it can continue
+  """
+  IN_PROGRESS_ERROR
+
+  """
+  When any step has finished, because we don't necessarily know what the next step will be yet
+  """
+  END_STEP
+
+  """
+  When the step is waiting for the contact to do something (like accept a connection request)
+  """
+  WAITING_FOR_CONTACT
+
+  """
+  When the last step has finished and there are no more steps to execute
+  """
+  FINISHED
+}
+
+type CampaignMutation {
+  modify(changes: MutateCampaign!): Campaign!
+  get: Campaign!
+  addCampaignContact(contacts: [AddCampaignContact!]!): [CampaignContact!]!
+  modifySteps(
+    stepCreations: [CreateCampaignStep!]! = []
+    stepMutations: [MutateCampaignStep!]! = []
+    stepDeletions: [UUID!]! = []
+    linkCreations: [CreateCampaignStepLink!]! = []
+    linkMutations: [MutateCampaignStepLink!]! = []
+    linkDeletions: [UUID!]! = []
+  ): CampaignQuery!
+}
+
+type CampaignQuery {
+  get: Campaign
+  steps: [CampaignStep!]
+  links: [CampaignStepLink!]
+  contacts: [CampaignContact!]
+}
+
+type CampaignStep {
+  id: UUID!
+  campaignId: UUID!
+  enabled: Boolean!
+  priority: Int!
+  stepData: CampaignStepData!
+  weeklyRestrictions: WeeklyRestrictions
+  ui: Ui
+  render(campaignContactIds: [UUID!], template: Template!): [String]!
+}
+
+union CampaignStepData =
+  | SendEmail
+  | SendLinkedInMessage
+  | SendLinkedInConnectionRequest
+
+input CampaignStepDataInput {
+  sendEmail: SendEmailInput
+  sendLinkedInMessage: SendLinkedInMessageInput
+  sendLinkedInConnectionRequest: SendLinkedInConnectionRequestInput
+}
+
+type CampaignStepLink {
+  id: UUID!
+  prev: UUID!
+  next: UUID!
+  enabled: Boolean!
+  delay: Span!
+  randomDelay: Span!
+  priority: Int!
+  filter: CampaignStepLinkFilter!
+}
+
+union CampaignStepLinkFilter = ConstFilter | AndFilter | OrFilter | NotFilter
+
+input CampaignStepLinkFilterInput {
+  const: ConstFilterInput
+  and: AndFilterInput
+  or: OrFilterInput
+  not: NotFilterInput
+}
+
+type Company {
+  id: UUID!
+  liProfileUrl: String!
+  name: String
+  website: String
+  city: String
+  state: String
+  stateAbbr: String
+  countryFull: String
+  country2: String
+  country3: String
+  location: String
+  phone1: String
+  phone2: String
+  phone3: String
+  annualRevenue: Int
+  websiteDomain: String
+  foundedYear: Int
+  industry: String
+  revenueRange: String
+  staffCount: Int
+  staffCountRange: String
+}
+
+type ConstFilter {
+  pass: Boolean!
+}
+
+input ConstFilterInput {
+  pass: Boolean!
+}
+
+type Contact {
+  id: UUID!
+  firstName: String
+  middleName: String
+  lastName: String
+  fullName: String
+  preferredName: String
+  title: String
+  department: String
+  seniority: String
+  liProfileHandle: String
+  liSalesNavProfileId: String
+  city: String
+  state: String
+  stateAbbr: String
+  countryFull: String
+  country2: String
+  country3: String
+  location: String
+  companyId: UUID
+  company: Company
+  emails: [ContactEmail!]!
+  phones: [ContactPhone!]!
+}
+
+type ContactEmail {
+  id: UUID!
+  email: String!
+  emailsSent: Int!
+  emailsOpened: Int!
+  priority: Int!
+  emailType: EmailType!
+  emailSource: EmailSource!
+  confidenceScore: Int!
+  validationType: EmailValidation!
+  inactiveReason: String
+}
+
+type ContactList {
+  teamId: UUID!
+  id: UUID!
+  name: String!
+  linkedinId: UUID
+  salesNavQuery: String
+  csv: String
+  contactIds: [UUID!]!
+  contacts: [Contact!]!
+  createdDate: Timestamp!
+}
+
+type ContactListResult {
+  contactList: ContactList!
+  contacts: [Contact!]!
+  companies: [Company!]!
+  rejectedContacts: [RejectedContact!]!
+}
+
+type ContactPhone {
+  id: UUID!
+  phone: String!
+  phoneType: PhoneType!
+  priority: Int!
+  confidenceScore: Int!
+}
+
+type ContactRow {
+  bestEmail: String!
+  firstName: String!
+  middleName: String
+  lastName: String
+  fullName: String
+  preferredName: String
+  title: String
+  department: String
+  seniority: String
+  liProfileHandle: String
+  city: String
+  state: String
+  stateAbbr: String
+  country: String
+  country2: String
+  country3: String
+  location: String
+  linkedinEmail: String
+  email1: String
+  email1Validation: String
+  email1Confidence: String
+  email2: String
+  email2Validation: String
+  email2Confidence: String
+  personalEmail: String
+  personalEmailValidation: String
+  personalEmailConfidence: String
+  phone1: String
+  phone2: String
+  phone3: String
+  mobilePhone1: String
+  mobilePhone1Confidence: String
+  mobilePhone2: String
+  mobilePhone2Confidence: String
+  mobilePhone3: String
+  mobilePhone3Confidence: String
+  companyLiProfileUrl: String
+  companyName: String
+  companyWebsite: String
+  companyCity: String
+  companyState: String
+  companyStateAbbr: String
+  companyCountry: String
+  companyCountry2: String
+  companyCountry3: String
+  companyLocation: String
+  companyPhone1: String
+  companyPhone2: String
+  companyPhone3: String
+  companyAnnualRevenue: Int
+  companyWebsiteDomain: String
+  companyFoundedYear: Int
+  companyIndustry: String
+  companyRevenueRange: String
+  companyStaffCount: Int
+  companyStaffCountRange: String
+}
+
+input CreateCampaign {
+  name: String!
+}
+
+input CreateCampaignStep {
+  id: String!
+  stepData: CampaignStepDataInput!
+  enabled: Boolean
+
+  """
+  If not provided, will default to the lowest priority
+  """
+  priority: Int
+
+  """
+  If not provided, will default to allowing all times
+  """
+  weeklyRestrictions: WeeklyRestrictionsInput
+  ui: UiInput
+}
+
+input CreateCampaignStepLink {
+  prev: UuidOrTag!
+  next: UuidOrTag!
+  enabled: Boolean
+  delay: SpanInput!
+  randomDelay: SpanInput
+  priority: Int
+  filter: CampaignStepLinkFilterInput
+}
+
+input CreateInvite {
+  email: String!
+  privileges: Privileges!
+}
+
+input CreateLinkedIn {
+  primaryUserId: UUID
+  linkedinProfileUrl: String!
+  fullName: String!
+  maxPendingConnectionRequests: Int!
+  maxConnectionRequestsPerWeek: Int!
+  maxConnectionRequestsPerDay: Int!
+  dailyConnectionRequestsVariationPct: Int!
+  maxConsecutiveErrors: Int
+  minimumDelayBetweenConnectionRequestsMs: Int!
+  weeklyRestrictions: WeeklyRestrictionsInput
+  warmupEnabled: Boolean!
+  warmupPeriodDays: Int
+  warmupStartingConnectionRequestsPerDay: Int
+  proxyUrl: String
+}
+
+type DailyRestriction {
+  startTime: Time!
+  endTime: Time!
+}
+
+input DailyRestrictionInput {
+  startTime: Time!
+  endTime: Time!
+}
+
+type DefaultSetting {
+  maxConsecutiveLinkedinFailures: Int!
+}
+
+type DownloadInbox {
+  fullSync: Boolean!
+}
+
+type Email {
+  email: String!
+  domain: String!
+  hourlyLimit: Int!
+  dailyLimit: Int!
+  active: Boolean!
+  forwardingKey: String!
+  forwardingRuleLastVerified: Timestamp
+}
+
+type EmailGroup {
+  id: UUID!
+  name: String!
+  emails: [String!]!
+}
+
+enum EmailSource {
+  LINKED_IN
+  JANIUM
+  EXTERNAL
+}
+
+enum EmailType {
+  WORK
+  PERSONAL
+}
+
+enum EmailValidation {
+  UNKNOWN
+  ACCEPT_ALL
+  VALID
+}
+
+scalar ExtraData
+
+type Invite {
+  code: String!
+  email: String!
+  teamId: UUID!
+  privileges: Privileges!
+  createdAt: Timestamp!
+  createdById: UUID!
+  expiresAt: Timestamp!
+  createdBy: User
+  team: Team!
+}
+
+"""
+A scalar that can represent any JSON Object value.
+"""
+scalar JSONObject
+
+type LinkedIn {
+  id: UUID!
+  primaryUserId: UUID!
+  teamId: UUID!
+  linkedinProfileUrl: String!
+  fullName: String!
+  maxPendingConnectionRequests: Int!
+  maxConnectionRequestsPerWeek: Int!
+  maxConnectionRequestsPerDay: Int!
+  dailyConnectionRequestsVariationPct: Int!
+  minimumDelayBetweenConnectionRequestsMs: Int!
+  maxConsecutiveErrors: Int
+  warmupEnabled: Boolean!
+  warmupPeriodDays: Int
+  warmupStartingConnectionRequestsPerDay: Int
+  weeklyRestrictions: WeeklyRestrictions
+  todayMaxConnectionRequests: Int!
+  todayExecutableWindowStart: Time!
+  todayExecutableWindowEnd: Time!
+  todayOptionsUpdated: Timestamp!
+  connections: Int!
+  loginActiveLastValidated: Timestamp
+  salesNavigatorActiveLastValidated: Timestamp
+  proxyUrl: String
+  timezone: TimeZone!
+}
+
+union LinkedInAction =
+  | ScrapeSalesNavQuery
+  | SendConnectionRequest
+  | SyncConnections
+  | DownloadInbox
+
+type LinkedInActionFailure {
+  id: UUID!
+  action: LinkedInAction!
+  actionType: LinkedInActionType!
+  teamId: UUID!
+  linkedinId: UUID!
+  campaignId: UUID
+  campaignStepId: UUID
+  contactId: UUID
+  priority: Int!
+  failedAt: Timestamp!
+  attempts: Int!
+  error: String!
+  hasHtml: Boolean!
+  hasScreenshot: Boolean!
+  campaign: CampaignQuery
+  campaignStep: CampaignStep
+  contact: Contact
+  description: String
+}
+
+type LinkedInActionHistory {
+  id: UUID!
+  action: LinkedInAction!
+  actionType: LinkedInActionType!
+  teamId: UUID!
+  linkedinId: UUID!
+  campaignId: UUID
+  campaignStepId: UUID
+  contactId: UUID
+  priority: Int!
+  startedAt: Timestamp!
+  completedAt: Timestamp!
+  attempts: Int!
+  campaign: CampaignQuery
+  campaignStep: CampaignStep
+  contact: Contact
+  description: String
+}
+
+type LinkedInActionRequest {
+  id: UUID!
+  action: LinkedInAction!
+  actionType: LinkedInActionType!
+  teamId: UUID!
+  linkedinId: UUID!
+  campaignId: UUID
+  campaignStepId: UUID
+  contactId: UUID
+  expiresAt: Timestamp!
+  priority: Int!
+  nextAttemptAt: Timestamp!
+  lastAttemptStatus: LinkedInActionRequestStatus!
+  attempts: Int!
+  campaign: CampaignQuery
+  campaignStep: CampaignStep
+  contact: Contact
+}
+
+enum LinkedInActionRequestStatus {
+  PENDING
+  IN_PROGRESS
+  SUCCESS
+  FAILED
+  EXPIRED
+}
+
+enum LinkedInActionType {
+  SCRAPE_SALES_NAV_QUERY
+  SEND_CONNECTION_REQUEST
+  SYNC_CONNECTIONS
+  DOWNLOAD_INBOX
+}
+
+type LinkedInMutation {
+  modify(mutation: MutateLinkedIn!): LinkedIn!
+  get: LinkedIn!
+  startBrowser: String!
+  stopBrowser: Boolean!
+  startContainer: Boolean!
+  stopContainer: Boolean!
+  cleanContainer: Boolean!
+  createContactList(listName: String!, salesNavQuery: String!): UUID!
+  retryActionFailure(actionRequestId: UUID!): UUID!
+}
+
+type LinkedInQuery {
+  get: LinkedIn!
+  actionRequests: [LinkedInActionRequest!]!
+  actionRequestHistory(
+    limit: Int
+    maxCompletedAt: Timestamp
+  ): [LinkedInActionHistory!]!
+  actionRequestFailures(limit: Int): [LinkedInActionFailure!]!
+}
+
+input MutateCampaign {
+  name: String
+  active: Boolean
+  defaultEmailGroup: UUID
+  allowedMessagingDayTimes: WeeklyRestrictionsInput
+  linkedinIds: [UUID!]
+}
+
+input MutateCampaignStep {
+  id: UUID!
+  stepData: CampaignStepDataInput
+  enabled: Boolean
+
+  """
+  If not provided, will default to the lowest priority
+  """
+  priority: Int
+
+  """
+  If not provided, will default to allowing all times
+  """
+  weeklyRestrictions: WeeklyRestrictionsInput
+  ui: UiInput
+}
+
+input MutateCampaignStepLink {
+  id: UUID!
+  prev: UuidOrTag
+  next: UuidOrTag
+  enabled: Boolean
+  delay: SpanInput
+  randomDelay: SpanInput
+  priority: Int
+  filter: CampaignStepLinkFilterInput
+}
+
+input MutateLinkedIn {
+  primaryUserId: UUID
+  maxPendingConnectionRequests: Int
+  maxConnectionRequestsPerWeek: Int
+  maxConnectionRequestsPerDay: Int
+  dailyConnectionRequestsVariationPct: Int
+  minimumDelayBetweenConnectionRequestsMs: Int
+  weeklyRestrictions: WeeklyRestrictionsInput
+  warmupEnabled: Boolean
+  warmupPeriodDays: Int
+  warmupStartingConnectionRequestsPerDay: Int
+  maxConsecutiveErrors: Int
+  proxyUrl: String
+  todayMaxConnectionRequests: Int
+  todayExecutableWindowStart: Time
+  todayExecutableWindowEnd: Time
+}
+
+input MutateTeam {
+  name: String
+  timeZone: TimeZone
+  allowedMessagingDayTimes: WeeklyRestrictionsInput
+}
+
+type Mutation {
+  team: TeamMutation!
+  createTeam(name: String!, timezone: String!): Team!
+}
+
+type NotFilter {
+  not: CampaignStepLinkFilter!
+}
+
+input NotFilterInput {
+  not: CampaignStepLinkFilterInput!
+}
+
+type OrFilter {
+  or: [CampaignStepLinkFilter!]!
+}
+
+input OrFilterInput {
+  or: [CampaignStepLinkFilterInput!]!
+}
+
+enum PhoneType {
+  UNKNOWN
+  WORK
+  PERSONAL
+  MOBILE
+}
+
+scalar Privileges
+
+type Query {
+  team: TeamQuery
+
+  """
+  Returns all teams that an authenticated user is part of
+  """
+  allTeams: [Team!]!
+  timezones: [TimeZoneInfo!]!
+  defaultSetting: DefaultSetting!
+}
+
+type RejectedContact {
+  contactRow: ContactRow!
+  matchedIds: [UUID!]!
+  message: String!
+}
+
+type ScrapeSalesNavQuery {
+  salesNavigatorUrl: String!
+  maxPagesToScrape: Int
+  downloadFullProfileInfo: Boolean!
+  maxProfilesPerPage: Int
+  contactListId: UUID!
+}
+
+type SendConnectionRequest {
+  profileUrl: String!
+  message: String!
+}
+
+type SendEmail {
+  subject: Template!
+  body: Template!
+  from: UUID
+  replyToPrevious: Boolean!
+}
+
+input SendEmailInput {
+  subject: Template!
+  body: Template!
+  from: UUID
+  replyToPrevious: Boolean!
+}
+
+type SendLinkedInConnectionRequest {
+  connectionRequestMessage: Template!
+}
+
+input SendLinkedInConnectionRequestInput {
+  connectionRequestMessage: Template!
+}
+
+type SendLinkedInMessage {
+  linkedinMessage: Template!
+}
+
+input SendLinkedInMessageInput {
+  linkedinMessage: Template!
+}
+
+type Span {
+  businessDays: Int
+  seconds: Int
+  days: Int
+}
+
+input SpanInput {
+  businessDays: Int
+  days: Int
+  seconds: Int
+}
+
+type SyncConnections {
+  fullSync: Boolean!
+}
+
+type Team {
+  id: UUID!
+  name: String!
+  timeZone: TimeZone!
+  allowedMessagingDayTimes: WeeklyRestrictions!
+  users: [User!]!
+}
+
+type TeamMutation {
+  campaign(id: UUID!): CampaignMutation!
+  createCampaign(campaign: CreateCampaign!): Campaign!
+  createEmailGroup(name: String!): EmailGroup!
+  removeEmailGroup(groupId: UUID!): Boolean!
+  removeEmailFromGroup(groupId: UUID!, email: String!): Boolean!
+  addEmailToGroup(groupId: UUID!, email: String!): Boolean!
+  uploadContactListCsv(csvFile: Upload!, listName: String!): ContactListResult!
+  mutate(changes: MutateTeam!): Team!
+  createInvite(invite: CreateInvite!): Invite!
+  removeInvite(code: String!): Boolean!
+  createLinkedin(linkedin: CreateLinkedIn!): LinkedIn!
+  linkedin(id: UUID!): LinkedInMutation!
+  deleteContactLists(ids: [UUID!]!): [UUID!]!
+  mutateContactList(id: UUID!, name: String): Boolean!
+}
+
+type TeamQuery {
+  get: Team!
+  campaigns: [CampaignQuery!]!
+  campaign(id: UUID!): CampaignQuery!
+  contactLists: [ContactList!]!
+  emailIntegrations: [Email!]!
+  emailGroups: [EmailGroup!]!
+  invites(allTeams: Boolean): [Invite!]!
+  linkedInIntegrations: [LinkedInQuery!]!
+}
+
+scalar Template
+
+scalar Time
+
+scalar TimeZone
+
+type TimeZoneInfo {
+  name: String!
+  shortName: String!
+  offsetSeconds: Int!
+}
+
+scalar Timestamp
+
+"""
+A UUID is a unique 128-bit number, stored as 16 octets. UUIDs are parsed as
+Strings within GraphQL. UUIDs are used to assign unique identifiers to
+entities without requiring a central allocating authority.
+
+# References
+
+* [Wikipedia: Universally Unique Identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier)
+* [RFC4122: A Universally Unique Identifier (UUID) URN Namespace](http://tools.ietf.org/html/rfc4122)
+"""
+scalar UUID
+
+type Ui {
+  box: UiBox!
+}
+
+type UiBox {
+  xmin: Int!
+  xmax: Int!
+  ymin: Int!
+  ymax: Int!
+}
+
+input UiBoxInput {
+  xmin: Int!
+  xmax: Int!
+  ymin: Int!
+  ymax: Int!
+}
+
+input UiInput {
+  box: UiBoxInput!
+}
+
+"""
+A multipart file upload
+"""
+scalar Upload
+
+type User {
+  id: UUID!
+  defaultTeamId: UUID!
+  firstName: String!
+  lastName: String!
+  title: String!
+  company: String!
+  email: String!
+  timezone: TimeZone!
+  isActive: Boolean!
+  emailVerified: Boolean!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+}
+
+input UuidOrTag {
+  uuid: UUID
+  tag: String
+}
+
+type WeeklyRestrictions {
+  sunday: DailyRestriction
+  monday: DailyRestriction
+  tuesday: DailyRestriction
+  wednesday: DailyRestriction
+  thursday: DailyRestriction
+  friday: DailyRestriction
+  saturday: DailyRestriction
+}
+
+input WeeklyRestrictionsInput {
+  sunday: DailyRestrictionInput
+  monday: DailyRestrictionInput
+  tuesday: DailyRestrictionInput
+  wednesday: DailyRestrictionInput
+  thursday: DailyRestrictionInput
+  friday: DailyRestrictionInput
+  saturday: DailyRestrictionInput
+}
