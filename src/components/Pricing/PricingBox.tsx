@@ -44,7 +44,7 @@ const PricingBox = (props: {
         </div>
 
         <Link
-          href="/pagos"
+          href="/checkout"
           className={`mb-8 flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300 ${
             highlighted
               ? "bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"

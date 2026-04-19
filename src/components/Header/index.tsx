@@ -70,7 +70,7 @@ const Header = () => {
               Sign in
             </Link>
             <Link
-              href="/pagos"
+              href="/checkout"
               className="hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.8)] md:block"
             >
               Get started
@@ -128,7 +128,7 @@ const Header = () => {
               </li>
               <li>
                 <Link
-                  href="/pagos"
+                  href="/checkout"
                   onClick={() => setNavbarOpen(false)}
                   className="block rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-center text-sm font-semibold text-white"
                 >

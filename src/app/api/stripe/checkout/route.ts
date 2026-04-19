@@ -30,8 +30,8 @@ export async function POST(req: NextRequest) {
       customer_email: email || undefined,
       allow_promotion_codes: true,
       billing_address_collection: "required",
-      success_url: `${siteUrl}/pagos/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/pagos?canceled=true`,
+      success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/checkout?canceled=true`,
       subscription_data: {
         metadata: {
           plan,

@@ -53,7 +53,7 @@ const Hero = () => {
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/pagos"
+              href="/checkout"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-8 py-4 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-300 hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.8)]"
             >
               <span className="relative z-10 flex items-center gap-2">

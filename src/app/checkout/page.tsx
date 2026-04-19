@@ -34,7 +34,7 @@ const plans: Plan[] = [
   },
 ];
 
-const PagosPage = () => {
+const CheckoutPage = () => {
   const [selectedPlan, setSelectedPlan] = useState<Plan>(plans[1]);
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
   const [name, setName] = useState("");
@@ -397,4 +397,4 @@ const PagosPage = () => {
   );
 };
 
-export default PagosPage;
+export default CheckoutPage;
