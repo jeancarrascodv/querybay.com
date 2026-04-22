@@ -63,12 +63,12 @@ const Header = () => {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/signin"
+            <a
+              href="https://app.querybay.com/signin"
               className="hidden text-sm font-medium text-black/70 transition hover:text-black md:block dark:text-white/70 dark:hover:text-white"
             >
               Sign in
-            </Link>
+            </a>
             <Link
               href="/checkout"
               className="hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.8)] md:block"
@@ -118,13 +118,13 @@ const Header = () => {
                 </li>
               ))}
               <li className="border-t border-black/5 pt-2 dark:border-white/10">
-                <Link
-                  href="/signin"
+                <a
+                  href="https://app.querybay.com/signin"
                   onClick={() => setNavbarOpen(false)}
                   className="block rounded-lg px-3 py-2 text-sm font-medium text-black/70 dark:text-white/70"
                 >
                   Sign in
-                </Link>
+                </a>
               </li>
               <li>
                 <Link

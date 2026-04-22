@@ -13,6 +13,8 @@ const nextConfig = {
     return [
       { source: "/pagos", destination: "/checkout", permanent: true },
       { source: "/pagos/:path*", destination: "/checkout/:path*", permanent: true },
+      { source: "/signin", destination: "https://app.querybay.com/signin", permanent: false },
+      { source: "/signup", destination: "https://app.querybay.com/signup", permanent: false },
     ];
   },
 };

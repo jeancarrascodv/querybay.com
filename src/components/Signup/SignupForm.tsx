@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useState } from "react";
 import LegalModal from "@/components/Legal/LegalModal";
 import {
@@ -127,9 +126,9 @@ const SignupForm = () => {
 
             <p className="mt-6 text-center text-sm text-black/60 dark:text-white/60">
               Already have an account?{" "}
-              <Link href="/signin" className="font-semibold text-[#a855f7] hover:underline">
+              <a href="https://app.querybay.com/signin" className="font-semibold text-[#a855f7] hover:underline">
                 Sign in
-              </Link>
+              </a>
             </p>
           </div>
         </div>

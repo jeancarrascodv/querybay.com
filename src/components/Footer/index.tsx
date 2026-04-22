@@ -134,14 +134,14 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/signin" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
+                <a href="https://app.querybay.com/signin" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
                   Sign in
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/signup" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
+                <a href="https://app.querybay.com/signup" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
                   Create account
-                </Link>
+                </a>
               </li>
               <li>
                 <Link href="/checkout" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">

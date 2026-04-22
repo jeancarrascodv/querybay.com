@@ -71,8 +71,8 @@ const Hero = () => {
                 </svg>
               </span>
             </Link>
-            <Link
-              href="/signin"
+            <a
+              href="https://app.querybay.com/signin"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-black/15 bg-white/40 px-8 py-4 text-base font-semibold text-black backdrop-blur-md transition-all duration-300 hover:border-black/30 hover:bg-white/70 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10"
             >
               <svg
@@ -89,7 +89,7 @@ const Hero = () => {
                 <path d="M15 12H3" />
               </svg>
               Sign in
-            </Link>
+            </a>
           </div>
 
           {/* Trust metrics */}

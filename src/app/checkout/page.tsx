@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 
 type Plan = {
   id: "outreach" | "growth" | "talent";
@@ -384,9 +383,9 @@ const CheckoutPage = () => {
 
                 <p className="mt-5 text-center text-xs text-black/50 dark:text-white/50">
                   Already a customer?{" "}
-                  <Link href="/signin" className="font-semibold text-[#a855f7] hover:underline">
+                  <a href="https://app.querybay.com/signin" className="font-semibold text-[#a855f7] hover:underline">
                     Sign in
-                  </Link>
+                  </a>
                 </p>
               </div>
             </div>
