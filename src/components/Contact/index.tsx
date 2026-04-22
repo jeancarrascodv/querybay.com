@@ -39,14 +39,11 @@ const Contact = () => {
     const params = new URLSearchParams();
     if (name) params.set("name", name);
     if (email) params.set("email", email);
-    if (company) params.set("a1", company);
-    if (interest) params.set("a2", interest);
-    if (message) params.set("a3", message);
-    params.set("hide_event_type_details", "1");
     params.set("hide_gdpr_banner", "1");
     params.set("primary_color", "a855f7");
 
     const url = `${CALENDLY_URL}?${params.toString()}`;
+    console.log("[calendly] opening", url);
 
     if (typeof window !== "undefined" && window.Calendly) {
       window.Calendly.initPopupWidget({ url });
