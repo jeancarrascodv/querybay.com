@@ -1,5 +1,6 @@
 "use client";
 
+import CalendlyBadge from "@/components/CalendlyBadge";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <ScrollToTop />
+          <CalendlyBadge />
         </Providers>
       </body>
     </html>
