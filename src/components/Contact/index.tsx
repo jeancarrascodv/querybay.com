@@ -72,7 +72,7 @@ const Contact = () => {
                     </span>
                   </h2>
                   <p className="mb-8 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-                    Book a free 30-min call. We&apos;ll audit your funnel, share 3
+                    Book a free 15-min call. We&apos;ll audit your funnel, share 3
                     proven templates, and hand you a concrete action plan. No
                     strings attached.
                   </p>
