@@ -34,7 +34,7 @@ const CalendlyBadge = () => {
           window.Calendly?.initBadgeWidget({
             url: CALENDLY_URL,
             text: "Schedule time with me",
-            color: "#b210e5",
+            color: "#a855f7",
             textColor: "#ffffff",
             branding: true,
           });
