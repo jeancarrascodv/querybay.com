@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^9.2.0",
+    "@supabase/supabase-js": "^2.104.0",
     "@tailwindcss/postcss": "^4.1.3",
     "eslint": "^9.24.0",
     "eslint-config-next": "15.1.6",

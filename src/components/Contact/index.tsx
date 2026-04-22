@@ -22,8 +22,29 @@ const Contact = () => {
   const [interest, setInterest] = useState("Multichannel outreach");
   const [message, setMessage] = useState("");
 
-  const openCalendly = (e: FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const resetForm = () => {
+    setName("");
+    setCompany("");
+    setEmail("");
+    setInterest("Multichannel outreach");
+    setMessage("");
+  };
+
+  const openCalendly = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, company, email, interest, message }),
+      });
+    } catch {
+      // Non-blocking: even if lead capture fails, let the user book
+    }
 
     const params = new URLSearchParams();
     if (name) params.set("name", name);
@@ -38,6 +59,9 @@ const Contact = () => {
     } else {
       window.open(url, "_blank");
     }
+
+    resetForm();
+    setSubmitting(false);
   };
 
   return (
@@ -188,9 +212,10 @@ const Contact = () => {
                   </div>
                   <button
                     type="submit"
-                    className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
+                    disabled={submitting}
+                    className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)] disabled:opacity-60"
                   >
-                    Book a free call
+                    {submitting ? "Opening calendar..." : "Book a free call"}
                     <svg className="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M13 5l7 7-7 7" />
                     </svg>
