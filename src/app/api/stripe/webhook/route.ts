@@ -5,15 +5,16 @@ import { supabaseAdmin } from "@/lib/supabase";
 export const runtime = "nodejs";
 
 /// Maps the landing-page plan IDs to the querybay-app `plan_tier` enum
-/// (free|pro|enterprise). The landing sells three managed tiers
-/// (outreach|growth|talent); the SaaS DB groups them into the existing
-/// enum so /billing in app.querybay.com renders something coherent. The
-/// exact landing tier is preserved in `stripe_events.metadata` so we can
-/// reconstruct ARR/segmentation later without losing fidelity.
-function landingPlanToAppTier(plan: string | undefined): "pro" | "enterprise" {
+/// (free|pro|agency). The landing sells three managed tiers
+/// (outreach|growth|talent) for the done-for-you flow; the SaaS DB
+/// groups them into the existing enum so /billing in app.querybay.com
+/// renders something coherent. The exact landing tier is preserved in
+/// `stripe_events.metadata` so we can reconstruct ARR/segmentation
+/// later without losing fidelity.
+function landingPlanToAppTier(plan: string | undefined): "pro" | "agency" {
   if (plan === "outreach") return "pro";
-  // growth + talent + anything unknown → enterprise (highest tier).
-  return "enterprise";
+  // growth + talent + anything unknown → agency (highest tier).
+  return "agency";
 }
 
 // Payload shapes follow the documented Stripe API. We type them loosely

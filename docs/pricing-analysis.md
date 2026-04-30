@@ -2,9 +2,14 @@
 
 **2026-04-30 · Working draft**
 
-> Mercado actual: confusion entre dos modelos. La landing vende **agencia
-> done-for-you** ($390-$1200/mo). El app vende **SaaS** ($49-$199/mo).
-> Este documento ordena los benchmarks y recomienda un esquema unificado.
+> **Decisión:** dos modelos paralelos, mismo brand.
+> - **querybay-app** vende SaaS **per seat** (Free / Pro $99 / Agency $249).
+> - **querybay.com** vende **done-for-you** managed (Outreach / Growth / Talent).
+>
+> Pricing unificado por user (no por LinkedIn account). Cada team paga
+> `pricePerUser × seats activos`. Esto escala mejor que cobrar por agente
+> porque el operador (humano) es el cuello de botella real, no el
+> agente automatizado.
 
 ---
 
@@ -93,22 +98,28 @@ Subir precios alineando con Cleverly + ajustar por entrega:
 
 Margen esperado: 50-70% por cliente, asumiendo Jean cobra $50/h interno.
 
-### B) Modelo SaaS self-serve (querybay-app)
+### B) Modelo SaaS per-seat (querybay-app — SHIPPED 2026-04-30)
 
-Ajustar tiers actuales para mejor cobertura del mercado:
+Tiers per-user activos en `/billing` después de la migración
+`20260430000004_rename_plan_enterprise_to_agency.sql`:
 
-| Plan | Precio | Límites |
+| Plan | Precio | Límites por seat |
 |---|---|---|
-| **Free** | $0 | 1 LinkedIn, 50 actions/mo, sin AI chat |
-| **Starter** | **$49/mo** | 1 LinkedIn, 1,000 actions/mo, AI chat básica |
-| **Pro** | **$99/mo** | 3 LinkedIn, 5,000 actions/mo, multichannel inbox, asset blocking |
-| **Business** | **$199/mo** | 10 LinkedIn, 20,000 actions/mo, dedicated proxy, priority support |
-| **Agency** | **$399/mo** | 25 LinkedIn, unlimited actions, white-label, team seats |
+| **Free** | $0 | 1 LinkedIn account · 100 actions/mo · 1 seat máximo |
+| **Pro** | **$99/seat/mo** | 5 LinkedIn accounts · 5,000 actions/mo · multi-step + Sales Nav · unified inbox · 10 seats máx |
+| **Agency** | **$249/seat/mo** | Unlimited LinkedIn accounts · unlimited actions · white-label · dedicated proxy · SSO · 50 seats máx |
 
-Compatible con el enum `plan_tier` actual si renombramos:
-- `free` → keep
-- `pro` → "Starter" o "Pro" (decidir UI label)
-- `enterprise` → "Business" o "Agency"
+Notas de modelado:
+- **Per seat, no per LinkedIn account**: el operador humano (que opera
+  el dashboard) es el cuello de botella. Una agencia con 5 operadores
+  manejando 30 cuentas LinkedIn paga 5 × $249 = $1,245/mes.
+- **`pricePerUser`** reemplazó `priceMonthly` en el tipo `Plan`.
+  `Usage.seatsActive` se calcula desde `team_members.status = 'active'`.
+- **Cap effective = perUser × seats**: el UsageCard renderiza barras
+  contra el ceiling agregado del team, no contra el per-seat.
+- **Free → 1 seat máximo**: no permite agregar team members. Es
+  acquisition tier; el upgrade trigger natural es "necesito invitar
+  a alguien".
 
 ### C) Modelo híbrido (recomendado para Jean)
 
