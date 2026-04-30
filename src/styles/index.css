@@ -133,3 +133,35 @@ layer(base);
     @apply inline-flex;
   }
 }
+
+/* Scroll-fade primitive — modern landing animation pattern. Sections
+   wrapped in <FadeIn> get `data-animate="fade-up"` and toggle the
+   `is-visible` class via IntersectionObserver. The `prefers-reduced-
+   motion` override skips the animation entirely for accessibility. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate="fade-up"] {
+  opacity: 0;
+}
+
+[data-animate="fade-up"].is-visible {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate="fade-up"] {
+    opacity: 1;
+  }
+  [data-animate="fade-up"].is-visible {
+    animation: none;
+  }
+}

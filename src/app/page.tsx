@@ -1,5 +1,6 @@
 import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
+import { FadeIn } from "@/components/Common/FadeIn";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import FAQ from "@/components/FAQ";
@@ -16,17 +17,34 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  // Hero stays un-faded — it's already in view on page load and
+  // hiding it for 0.7s would tank LCP. Everything below the fold
+  // gets the scroll-fade.
   return (
     <>
       <ScrollUp />
       <Hero />
-      <Features />
-      <AboutSectionOne />
-      <AboutSectionTwo />
-      <Pricing />
-      <TrustStrip />
-      <FAQ />
-      <Contact />
+      <FadeIn>
+        <Features />
+      </FadeIn>
+      <FadeIn>
+        <AboutSectionOne />
+      </FadeIn>
+      <FadeIn>
+        <AboutSectionTwo />
+      </FadeIn>
+      <FadeIn>
+        <Pricing />
+      </FadeIn>
+      <FadeIn>
+        <TrustStrip />
+      </FadeIn>
+      <FadeIn>
+        <FAQ />
+      </FadeIn>
+      <FadeIn>
+        <Contact />
+      </FadeIn>
     </>
   );
 }
