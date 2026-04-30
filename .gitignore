@@ -30,3 +30,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Supabase CLI temp + linked project state
+supabase/.temp/
+
+# TypeScript incremental build cache
+*.tsbuildinfo
