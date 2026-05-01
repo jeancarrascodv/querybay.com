@@ -26,23 +26,23 @@ type FAQItem = {
 const FAQS: FAQItem[] = [
   {
     q: "Is QueryBay safe for my LinkedIn account?",
-    a: "We follow the same human-pacing patterns proven safe over 6+ months of production use: humanized typing speeds, randomized delays between sends, daily caps that respect LinkedIn limits, weekday-only send windows, and full-page scroll-before-action so the activity profile matches a real person. We also support per-account proxies and warmup curves. Most operators run with zero issues. We don't claim it's risk-free — LinkedIn automation is in a gray area — but our guardrails are stricter than every competitor we've benchmarked.",
+    a: "We follow the same human-pacing patterns proven safe over 6+ months of production use: humanized typing speeds, randomized delays between sends, daily caps that respect LinkedIn limits, weekday-only send windows, and full-page scroll-before-action so the activity profile matches a real person. We also support per-account proxies and warmup curves. Most operators run with zero issues. We don't claim it's risk-free since LinkedIn automation is in a gray area, but our guardrails are stricter than every competitor we've benchmarked.",
   },
   {
     q: "What's the difference between the SaaS and the Done-for-you services?",
-    a: "Self-serve plans (Free / Pro $99 per seat / Agency $249 per seat) give your team direct access to the dashboard — connect your LinkedIn cookie, build campaigns, run them yourself. Done-for-you (Outreach / Growth / Talent) is when our team operates the campaigns for you end-to-end: we connect the accounts, write the copy, monitor replies, and report monthly. Pick self-serve if you have an SDR; pick Done-for-you if you want results without owning the workflow.",
+    a: "Self-serve plans (Free / Pro $99 per seat / Agency $249 per seat) give your team direct access to the dashboard. Connect your LinkedIn cookie, build campaigns, and run them yourself. Done-for-you (Outreach / Growth / Talent) is when our team operates the campaigns for you end-to-end: we connect the accounts, write the copy, monitor replies, and report monthly. Pick self-serve if you have an SDR; pick Done-for-you if you want results without owning the workflow.",
   },
   {
     q: "How does per-seat billing work?",
-    a: "On Pro and Agency plans you pay per active team member, billed monthly. Add a seat and your bill goes up by the per-user price; remove a seat and it drops at the next cycle. There's no minimum seat count. A solo operator on Pro pays $99/mo; a 5-person team on Pro pays $495/mo. Your active LinkedIn account count doesn't change the price — operators are the bottleneck, not agents.",
+    a: "On Pro and Agency plans you pay per active team member, billed monthly. Add a seat and your bill goes up by the per-user price; remove a seat and it drops at the next cycle. There's no minimum seat count. A solo operator on Pro pays $99/mo; a 5-person team on Pro pays $495/mo. Your active LinkedIn account count doesn't change the price, since operators are the bottleneck, not agents.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Self-serve cancel from /billing in the app — your subscription stops at the end of the current period and you can keep using it until then. No retention call, no email-only support tier. We won't pretend we're sad to lose you.",
+    a: "Yes. Self-serve cancel from /billing in the app. Your subscription stops at the end of the current period and you can keep using it until then. No retention call, no email-only support tier. We won't pretend we're sad to lose you.",
   },
   {
     q: "Where is my data stored and who has access?",
-    a: "All data lives in Supabase (Postgres) hosted in AWS us-west-2. Row-level security means each team only reads its own rows, even from the database side. Stripe handles payments — we never see card numbers. LinkedIn cookies are encrypted at rest and only decrypted in the worker process to drive the browser. Jean is the only person with admin DB access; we'll add team operators as we grow with audit logging.",
+    a: "All data lives in Supabase (Postgres) hosted in AWS us-west-2. Row-level security means each team only reads its own rows, even from the database side. Stripe handles payments, so we never see card numbers. LinkedIn cookies are encrypted at rest and only decrypted in the worker process to drive the browser. Jean is the only person with admin DB access; we'll add team operators as we grow with audit logging.",
   },
   {
     q: "What happens if LinkedIn flags my account?",
@@ -50,7 +50,7 @@ const FAQS: FAQItem[] = [
   },
   {
     q: "Do you offer a free trial?",
-    a: "The Free plan is the trial — it's not time-limited. 1 LinkedIn account, 100 actions per month, basic AI chat. Most operators upgrade once they need a second account or hit the action ceiling, which usually happens in week 2-3. No credit card required to start.",
+    a: "The Free plan is the trial. It's not time-limited. 1 LinkedIn account, 100 actions per month, basic AI chat. Most operators upgrade once they need a second account or hit the action ceiling, which usually happens in week 2-3. No credit card required to start.",
   },
   {
     q: "How do you stay updated when LinkedIn changes their UI?",
