@@ -1,5 +1,4 @@
 import AboutSectionOne from "@/components/About/AboutSectionOne";
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import { FadeIn } from "@/components/Common/FadeIn";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
@@ -29,9 +28,6 @@ export default function Home() {
       </FadeIn>
       <FadeIn>
         <AboutSectionOne />
-      </FadeIn>
-      <FadeIn>
-        <AboutSectionTwo />
       </FadeIn>
       <FadeIn>
         <Pricing />
