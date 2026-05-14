@@ -29,10 +29,8 @@ const PricingBox = (props: {
           <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-black/50 dark:text-white/60">
             {packageName}
           </h4>
-          <div className="mb-3 flex items-baseline gap-1">
-            <span className="text-3xl font-bold text-black dark:text-white">
-              Custom pricing
-            </span>
+          <div className="mb-3 text-3xl font-bold text-black dark:text-white">
+            Custom pricing
           </div>
           <p className="text-sm text-black/60 dark:text-white/70">{subtitle}</p>
         </div>
