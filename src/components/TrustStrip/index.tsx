@@ -8,7 +8,7 @@
 /// proper logo wall.
 
 const STACK = [
-  { name: "Stripe", caption: "Payments & PCI-compliant checkout" },
+  { name: "Stripe", caption: "Secure payments & invoicing" },
   { name: "Supabase", caption: "Database & auth · row-level security" },
   { name: "Vercel", caption: "Edge delivery · 99.99% uptime" },
   { name: "Caddy", caption: "TLS end-to-end · Let’s Encrypt auto-renew" },
@@ -20,12 +20,12 @@ const PROMISES = [
     body: "Self-serve cancellation from your dashboard. No retention calls, no questions.",
   },
   {
-    title: "No setup fee",
-    body: "What you see on the pricing card is what you pay. Onboarding included.",
+    title: "Clear scope, clear quote",
+    body: "Every proposal lists exact deliverables and KPIs before you commit. No surprises mid-engagement.",
   },
   {
     title: "Real human reply within 24h",
-    body: "Email support is read by Jean, not a chatbot. Priority chat on Pro and above.",
+    body: "Email support is read by Jean, not a chatbot. A real person answers every question.",
   },
   {
     title: "Your data stays yours",

@@ -33,27 +33,27 @@ const Hero = () => {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            Growth · Multichannel Outreach · Remote Talent from LATAM + Ghana
+            Lead Generation · Multichannel Outreach · Booked Meetings
           </div>
 
           <h1 className="mb-6 text-4xl font-bold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
             Outreach that converts.
             <br />
             <span className="bg-[linear-gradient(110deg,#6366f1_0%,#a855f7_45%,#ec4899_100%)] bg-clip-text text-transparent">
-              Talent that scales.
+              Pipeline that scales.
             </span>
           </h1>
 
           <p className="mx-auto mb-10 max-w-[680px] text-base leading-relaxed text-black/60 sm:text-lg md:text-xl dark:text-white/70">
-            We book qualified meetings with coordinated campaigns across
-            LinkedIn, email, WhatsApp, and calls. Then we build your team with
-            top-tier talent from LATAM and Ghana. No friction, no HR hassle,
-            no long commitments.
+            We build your B2B pipeline with coordinated campaigns across
+            LinkedIn, email, WhatsApp, and calls. Qualified meetings booked for
+            you every month, run by a dedicated team in LATAM and Ghana. No
+            friction, no long commitments.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/checkout"
+              href="/#contact"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-8 py-4 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-300 hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.8)]"
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -96,9 +96,9 @@ const Hero = () => {
           <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
             {[
               { value: "+12k", label: "meetings booked" },
-              { value: "7-14 days", label: "turnkey hiring" },
-              { value: "2 continents", label: "LATAM + Ghana" },
+              { value: "9.1%", label: "average reply rate" },
               { value: "4 channels", label: "LinkedIn · Email · WhatsApp · Call" },
+              { value: "7 days", label: "to campaign launch" },
             ].map((m) => (
               <div
                 key={m.label}

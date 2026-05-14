@@ -19,12 +19,12 @@ const Features = () => {
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
             Everything you need to{" "}
             <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-              grow without friction
+              fill your pipeline
             </span>
           </h2>
           <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
-            A full stack of growth, outreach, and remote talent. Pick the
-            services you need or combine them to scale faster.
+            A full lead generation stack: data, outreach, and booked meetings.
+            Pick what you need or run the whole engine with us.
           </p>
         </div>
 

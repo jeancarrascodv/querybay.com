@@ -15,20 +15,20 @@ const regions = [
 
 const benefits = [
   {
-    title: "Hired in 7-14 days",
-    desc: "Sourcing, technical and cultural vetting, coordinated interviews, and onboarding ready in under two weeks.",
+    title: "Live in 7-14 days",
+    desc: "Sourcing, copywriting, domain warmup, and account setup are ready to launch in under two weeks.",
   },
   {
-    title: "40-70% lower cost",
-    desc: "Access senior talent at a fraction of US or European rates, without compromising on quality or seniority.",
+    title: "Specialists, not generalists",
+    desc: "SDRs, copywriters, and data researchers who do outbound full-time, not as a side task.",
   },
   {
-    title: "HR, payroll & legal included",
-    desc: "We handle local contracts, international payments, benefits, and compliance. You pay a single invoice.",
+    title: "Fully managed",
+    desc: "We handle tooling, deliverability, data, and reporting. You review the meetings that land on your calendar.",
   },
   {
     title: "Replacement guarantee",
-    desc: "If someone isn't the right fit, we replace them at no extra cost within the first 90 days.",
+    desc: "If a team member isn't the right fit, we swap them in with no disruption to your campaigns.",
   },
 ];
 
@@ -77,21 +77,20 @@ const AboutSectionTwo = () => {
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-black dark:text-white">
-                    Roles we hire
+                    Roles on your team
                   </div>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
                 {[
                   "SDR / BDR",
-                  "Executive Assistant",
-                  "Full-Stack Dev",
-                  "Customer Support",
-                  "Marketing Ops",
                   "Appointment Setter",
-                  "Data Analyst",
-                  "Design / UI",
-                  "Media Buyer",
+                  "Copywriter",
+                  "Data Researcher",
+                  "Deliverability Specialist",
+                  "Campaign Manager",
+                  "LinkedIn Specialist",
+                  "Cold Caller",
                 ].map((role) => (
                   <span
                     key={role}
@@ -106,18 +105,18 @@ const AboutSectionTwo = () => {
 
           <div className="order-1 lg:order-2">
             <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-              Remote talent
+              The team
             </span>
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-              Dedicated teams across{" "}
+              The team behind your pipeline, across{" "}
               <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
                 LATAM and Ghana
               </span>
             </h2>
             <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
-              We build your team with pre-vetted bilingual professionals from
-              Latin America and Ghana. You focus on growing; we handle
-              sourcing, hiring, payroll, and compliance.
+              Your campaigns are run day to day by pre-vetted bilingual
+              specialists from Latin America and Ghana. You get the meetings; we
+              handle sourcing, outreach, and follow-up.
             </p>
 
             <div className="space-y-5">

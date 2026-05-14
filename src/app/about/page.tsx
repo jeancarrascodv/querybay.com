@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About | QueryBay",
   description:
-    "We're a multicultural team focused on growth, outreach, and remote talent across LATAM and Ghana.",
+    "We're a multicultural team focused on lead generation and multichannel outreach across LATAM and Ghana.",
 };
 
 const AboutPage = () => {
@@ -15,7 +15,7 @@ const AboutPage = () => {
     <>
       <Breadcrumb
         pageName="About QueryBay"
-        description="We build acquisition engines and remote teams for companies that want to grow without friction. We operate between Latin America and Ghana with an obsessive focus on results."
+        description="We build lead generation engines for companies that want predictable pipeline. We operate between Latin America and Ghana with an obsessive focus on booked meetings."
       />
       <AboutSectionOne />
       <AboutSectionTwo />

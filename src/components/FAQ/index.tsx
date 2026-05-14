@@ -25,36 +25,36 @@ type FAQItem = {
 
 const FAQS: FAQItem[] = [
   {
-    q: "Is QueryBay safe for my LinkedIn account?",
-    a: "We follow the same human-pacing patterns proven safe over 6+ months of production use: humanized typing speeds, randomized delays between sends, daily caps that respect LinkedIn limits, weekday-only send windows, and full-page scroll-before-action so the activity profile matches a real person. We also support per-account proxies and warmup curves. Most operators run with zero issues. We don't claim it's risk-free since LinkedIn automation is in a gray area, but our guardrails are stricter than every competitor we've benchmarked.",
+    q: "How quickly will I see booked meetings?",
+    a: "Most clients see their first qualified meetings within 2 to 4 weeks. Weeks one and two go to data sourcing, copywriting, domain warmup, and account setup. Replies and booked calls ramp from week three as the sequences mature and we learn what your market responds to.",
   },
   {
-    q: "What's the difference between the SaaS and the Done-for-you services?",
-    a: "Self-serve plans (Free / Pro $99 per seat / Agency $249 per seat) give your team direct access to the dashboard. Connect your LinkedIn cookie, build campaigns, and run them yourself. Done-for-you (Outreach / Growth / Talent) is when our team operates the campaigns for you end-to-end: we connect the accounts, write the copy, monitor replies, and report monthly. Pick self-serve if you have an SDR; pick Done-for-you if you want results without owning the workflow.",
+    q: "Is this safe for my LinkedIn account?",
+    a: "We follow human-pacing patterns proven safe over months of production use: humanized typing speeds, randomized delays between sends, daily caps that respect LinkedIn limits, weekday-only send windows, and full-page scroll-before-action so the activity profile matches a real person. We also support per-account proxies and warmup curves. We don't claim it's risk-free since LinkedIn automation is in a gray area, but our guardrails are stricter than every competitor we've benchmarked.",
   },
   {
-    q: "How does per-seat billing work?",
-    a: "On Pro and Agency plans you pay per active team member, billed monthly. Add a seat and your bill goes up by the per-user price; remove a seat and it drops at the next cycle. There's no minimum seat count. A solo operator on Pro pays $99/mo; a 5-person team on Pro pays $495/mo. Your active LinkedIn account count doesn't change the price, since operators are the bottleneck, not agents.",
+    q: "Which channels do you run?",
+    a: "LinkedIn, cold email, WhatsApp, and outbound calling, coordinated as one campaign. We start with the two channels that fit your market best and layer in the rest as we see what converts. Every channel feeds the same pipeline so a prospect is reached wherever they actually respond.",
+  },
+  {
+    q: "Who actually runs my campaigns?",
+    a: "A dedicated team from LATAM and Ghana: an SDR, a copywriter, and a data researcher, overseen by a campaign manager. They work US-friendly hours and operate the campaigns end to end, from list building to booking the meeting on your calendar.",
+  },
+  {
+    q: "Do I need to provide the lead list?",
+    a: "No. Sourcing, enriching, and verifying your ideal customer list is part of the engagement. If you already have a list, we'll clean it, enrich it, and use it. Either way the data is refreshed continuously so campaigns never run on stale contacts.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Self-serve cancel from /billing in the app. Your subscription stops at the end of the current period and you can keep using it until then. No retention call, no email-only support tier. We won't pretend we're sad to lose you.",
+    a: "Yes. No long contracts and no retention calls. Your engagement runs month to month and you can stop at the end of any cycle. We won't pretend we're sad to lose you.",
   },
   {
     q: "Where is my data stored and who has access?",
-    a: "All data lives in Supabase (Postgres) hosted in AWS us-west-2. Row-level security means each team only reads its own rows, even from the database side. Stripe handles payments, so we never see card numbers. LinkedIn cookies are encrypted at rest and only decrypted in the worker process to drive the browser. Jean is the only person with admin DB access; we'll add team operators as we grow with audit logging.",
+    a: "All data lives in Supabase (Postgres) with row-level security, so each client only reads its own rows even from the database side. LinkedIn cookies are encrypted at rest and only decrypted in the worker process to drive the browser. Access is limited to the team running your campaigns, with audit logging.",
   },
   {
-    q: "What happens if LinkedIn flags my account?",
-    a: "First, the runner pauses the integration so we don't keep poking it. Second, the operator gets a notification (in-app and email if enabled). Third, our diagnostic dump captures the page state at the time of the flag so we can identify whether it was a captcha, an auth wall, or a hard restriction. Most flags are recoverable by a human login; we'll guide you through it. We don't refund based on this since LinkedIn's platform decisions are outside our control, but we cap any new caps automatically when warming back up.",
-  },
-  {
-    q: "Do you offer a free trial?",
-    a: "The Free plan is the trial. It's not time-limited. 1 LinkedIn account, 100 actions per month, basic AI chat. Most operators upgrade once they need a second account or hit the action ceiling, which usually happens in week 2-3. No credit card required to start.",
-  },
-  {
-    q: "How do you stay updated when LinkedIn changes their UI?",
-    a: "Selectors are versioned, the executor walks several fallback paths per click, and we run end-to-end smoke tests after every release. When LinkedIn ships a structural change (the SDUI variant rollout in late 2026 is a recent example) we patch within hours, not weeks. The architecture is built around the assumption that LinkedIn churn is constant.",
+    q: "How much does it cost?",
+    a: "Every engagement is scoped to your market, target list size, and channel mix, so we quote per client rather than list a fixed number. Book a call and we'll build a proposal with clear deliverables and KPIs before you commit to anything.",
   },
 ];
 

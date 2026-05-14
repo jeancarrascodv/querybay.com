@@ -24,8 +24,8 @@ const Footer = () => {
               QueryBay
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-black/60 dark:text-white/60">
-              Growth, multichannel outreach, and remote talent in LATAM and
-              Ghana. We scale your operation without the friction or overhead.
+              Lead generation and multichannel outreach for B2B teams. We book
+              qualified meetings, run by a dedicated team in LATAM and Ghana.
             </p>
             <div className="flex items-center gap-3">
               {[
@@ -82,17 +82,17 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/#features" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
+                  Lead Generation
+                </Link>
+              </li>
+              <li>
+                <Link href="/#features" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
                   Growth Marketing
                 </Link>
               </li>
               <li>
                 <Link href="/#features" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Outsourcing
-                </Link>
-              </li>
-              <li>
-                <Link href="/#features" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  LATAM + Ghana Hiring
+                  Appointment Setting
                 </Link>
               </li>
             </ul>
@@ -144,8 +144,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link href="/checkout" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
-                  Checkout
+                <Link href="/contact" className="text-black/60 transition hover:text-black dark:text-white/60 dark:hover:text-white">
+                  Get a quote
                 </Link>
               </li>
             </ul>

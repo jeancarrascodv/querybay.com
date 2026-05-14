@@ -1,15 +1,12 @@
 import Link from "next/link";
 
 const PricingBox = (props: {
-  price: string;
-  duration: string;
   packageName: string;
   subtitle: string;
   highlighted?: boolean;
   children: React.ReactNode;
 }) => {
-  const { price, duration, packageName, subtitle, highlighted, children } =
-    props;
+  const { packageName, subtitle, highlighted, children } = props;
 
   return (
     <div className="relative h-full">
@@ -33,25 +30,22 @@ const PricingBox = (props: {
             {packageName}
           </h4>
           <div className="mb-3 flex items-baseline gap-1">
-            <span className="text-5xl font-bold text-black dark:text-white">
-              ${price}
-            </span>
-            <span className="text-base font-medium text-black/50 dark:text-white/50">
-              /{duration}
+            <span className="text-3xl font-bold text-black dark:text-white">
+              Custom pricing
             </span>
           </div>
           <p className="text-sm text-black/60 dark:text-white/70">{subtitle}</p>
         </div>
 
         <Link
-          href="/checkout"
+          href="/#contact"
           className={`mb-8 flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300 ${
             highlighted
               ? "bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)]"
               : "border border-black/10 bg-white text-black hover:border-black/30 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30"
           }`}
         >
-          Choose plan
+          Get a quote
         </Link>
 
         <div className="flex-1">{children}</div>

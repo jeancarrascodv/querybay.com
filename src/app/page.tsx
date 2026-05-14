@@ -11,9 +11,9 @@ import TrustStrip from "@/components/TrustStrip";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "QueryBay: Growth, Outreach & Remote Talent from LATAM + Ghana",
+  title: "QueryBay: Lead Generation & Multichannel Outreach",
   description:
-    "Multichannel outreach, growth marketing, outsourcing, and remote talent hiring across LATAM and Ghana. Scale your business without the overhead.",
+    "Predictable B2B lead generation. We book qualified meetings with coordinated outreach across LinkedIn, email, WhatsApp, and calls, run by a dedicated team in LATAM and Ghana.",
 };
 
 export default function Home() {

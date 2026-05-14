@@ -105,7 +105,7 @@ const Contact = () => {
                     {[
                       "Audit of your current outreach",
                       "3 personalized templates",
-                      "LATAM/Ghana team proposal",
+                      "Dedicated team proposal",
                       "90-day plan with KPIs",
                     ].map((item) => (
                       <li
@@ -188,9 +188,9 @@ const Contact = () => {
                       className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
                     >
                       <option>Multichannel outreach</option>
+                      <option>Lead generation</option>
                       <option>Growth marketing</option>
-                      <option>Service outsourcing</option>
-                      <option>LATAM / Ghana hiring</option>
+                      <option>Appointment setting</option>
                       <option>A combination of these</option>
                     </select>
                   </div>

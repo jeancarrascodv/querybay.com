@@ -42,7 +42,7 @@ export const termsContent: LegalContent = {
           <p>
             QueryBay provides growth marketing, multichannel outreach
             (including LinkedIn, email, WhatsApp, and voice), and remote talent
-            sourcing and outsourcing services across Latin America and Ghana.
+            sourcing across Latin America and Ghana.
             Specific scope, deliverables, and performance expectations are
             described in your subscription plan, an order form, or a separate
             statement of work.
