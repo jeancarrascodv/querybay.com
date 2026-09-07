@@ -1,129 +1,111 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import Brand from "@/components/Common/Brand";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const navbarToggleHandler = () => setNavbarOpen(!navbarOpen);
-
-  const [sticky, setSticky] = useState(false);
-  useEffect(() => {
-    const handleStickyNavbar = () => setSticky(window.scrollY >= 40);
-    window.addEventListener("scroll", handleStickyNavbar);
-    return () => window.removeEventListener("scroll", handleStickyNavbar);
-  }, []);
-
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
+  useEffect(() => {
+    setNavbarOpen(false);
+  }, [pathname]);
+  useEffect(() => {
+    if (!navbarOpen) return;
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setNavbarOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    const outside = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node))
+        setNavbarOpen(false);
+    };
+    document.addEventListener("keydown", close);
+    document.addEventListener("pointerdown", outside);
+    return () => {
+      document.removeEventListener("keydown", close);
+      document.removeEventListener("pointerdown", outside);
+    };
+  }, [navbarOpen]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 z-40 w-full transition-all duration-300 ${
-        sticky
-          ? "border-b border-black/5 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0d1a]/70"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container">
-        <div className="flex items-center justify-between py-4">
-          {/* Logo */}
+    <header className="qb-header" ref={headerRef}>
+      <div className="qb-header-inner container">
+        <Brand />
+        <nav className="qb-desktop-nav" aria-label="Main navigation">
+          {menuData.map((item) => (
+            <Link
+              key={item.id}
+              href={item.path || "/"}
+              aria-current={pathname === item.path ? "page" : undefined}
+            >
+              {item.title}
+            </Link>
+          ))}
+        </nav>
+        <div className="qb-header-actions">
+          <ThemeToggler />
+          <a className="qb-signin" href="https://app.querybay.com/signin">
+            Sign in
+          </a>
           <Link
-            href="/"
-            className="flex items-center gap-2 text-xl font-bold tracking-tight text-black dark:text-white"
+            href="/#contact"
+            className="qb-button qb-button-dark qb-header-cta"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#6366f1,#a855f7,#ec4899)] text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.6)]">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </span>
-            QueryBay
+            Let&apos;s talk <ArrowUpRight size={16} />
           </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center gap-8">
-              {menuData.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    href={item.path || "/"}
-                    className={`text-sm font-medium transition ${
-                      pathname === item.path
-                        ? "text-black dark:text-white"
-                        : "text-black/60 hover:text-black dark:text-white/60 dark:hover:text-white"
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Right side */}
-          <div className="flex items-center gap-3">
-            <a
-              href="https://app.querybay.com/signin"
-              className="hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.6)] transition hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.8)] md:block"
-            >
-              Sign in
-            </a>
-            <ThemeToggler />
-
-            {/* Mobile toggle */}
-            <button
-              onClick={navbarToggleHandler}
-              aria-label="Menu"
-              className="ml-2 flex h-10 w-10 flex-col items-center justify-center rounded-lg border border-black/10 lg:hidden dark:border-white/10"
-            >
-              <span
-                className={`block h-0.5 w-5 bg-black transition dark:bg-white ${
-                  navbarOpen ? "translate-y-1 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`my-1 block h-0.5 w-5 bg-black transition dark:bg-white ${
-                  navbarOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-5 bg-black transition dark:bg-white ${
-                  navbarOpen ? "-translate-y-1.5 -rotate-45" : ""
-                }`}
-              />
-            </button>
-          </div>
+          <button
+            ref={toggleRef}
+            className="qb-icon-button qb-menu-toggle"
+            type="button"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+            aria-label={navbarOpen ? "Close menu" : "Open menu"}
+            aria-expanded={navbarOpen}
+            aria-controls="mobile-navigation"
+            title={navbarOpen ? "Close menu" : "Open menu"}
+          >
+            {navbarOpen ? <X size={21} /> : <Menu size={21} />}
+          </button>
         </div>
-
-        {/* Mobile nav */}
-        {navbarOpen && (
-          <div className="rounded-2xl border border-black/10 bg-white/90 p-4 backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-[#0f1220]/90">
-            <ul className="space-y-2">
-              {menuData.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    href={item.path || "/"}
-                    onClick={() => setNavbarOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-black/70 hover:bg-black/5 dark:text-white/70 dark:hover:bg-white/5"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-              <li className="border-t border-black/5 pt-2 dark:border-white/10">
-                <a
-                  href="https://app.querybay.com/signin"
-                  onClick={() => setNavbarOpen(false)}
-                  className="block rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-5 py-2.5 text-center text-sm font-semibold text-white"
-                >
-                  Sign in
-                </a>
-              </li>
-            </ul>
-          </div>
-        )}
       </div>
+      <nav
+        id="mobile-navigation"
+        className="qb-mobile-nav"
+        aria-label="Mobile navigation"
+        hidden={!navbarOpen}
+      >
+        <div className="container">
+          {menuData.map((item) => (
+            <Link
+              key={item.id}
+              href={item.path || "/"}
+              onClick={() => setNavbarOpen(false)}
+            >
+              {item.title}
+              <ArrowUpRight size={16} />
+            </Link>
+          ))}
+          <a href="https://app.querybay.com/signin">
+            Sign in <ArrowUpRight size={16} />
+          </a>
+          <Link
+            href="/#contact"
+            onClick={() => setNavbarOpen(false)}
+            className="qb-mobile-contact"
+          >
+            Let&apos;s talk <ArrowUpRight size={16} />
+          </Link>
+        </div>
+      </nav>
     </header>
   );
 };

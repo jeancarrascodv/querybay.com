@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
+import "../styles/querybay.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +22,15 @@ export default function RootLayout({
       */}
       <head />
 
-      <body className={`bg-white text-black dark:bg-[#0b0d1a] dark:text-white ${inter.className}`}>
+      <body
+        className={`bg-white text-black dark:bg-[#0b0d1a] dark:text-white ${inter.className}`}
+      >
         <Providers>
+          <a href="#main-content" className="qb-skip-link">
+            Skip to content
+          </a>
           <Header />
-          {children}
+          <main id="main-content">{children}</main>
           <Footer />
           <ScrollToTop />
         </Providers>
@@ -34,4 +40,3 @@ export default function RootLayout({
 }
 
 import Providers from "./providers";
-

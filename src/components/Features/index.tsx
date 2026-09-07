@@ -1,41 +1,68 @@
-import SingleFeature from "./SingleFeature";
+import {
+  ArrowUpRight,
+  CalendarCheck,
+  ChartNoAxesCombined,
+  Database,
+  MessagesSquare,
+  Users,
+  Workflow,
+} from "lucide-react";
 import featuresData from "./featuresData";
 
-const Features = () => {
-  return (
-    <section
-      id="features"
-      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
-    >
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.12),transparent_70%)] blur-3xl" />
-      </div>
+const icons = [
+  MessagesSquare,
+  Database,
+  ChartNoAxesCombined,
+  CalendarCheck,
+  Users,
+  Workflow,
+];
 
-      <div className="container">
-        <div className="mx-auto mb-16 max-w-[720px] text-center">
-          <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
-            Services
-          </span>
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
-            Everything you need to{" "}
-            <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
-              fill your pipeline
-            </span>
+const Features = () => (
+  <section
+    id="features"
+    className="qb-section"
+    aria-labelledby="services-title"
+  >
+    <div className="container">
+      <div className="qb-section-heading">
+        <div>
+          <span className="qb-eyebrow">01 / WHAT WE DO</span>
+          <h2 id="services-title">
+            Good conversations.
+            <br />
+            <span className="qb-muted">Great opportunities.</span>
           </h2>
-          <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
-            A full lead generation stack: data, outreach, and booked meetings.
-            Pick what you need or run the whole engine with us.
-          </p>
         </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featuresData.map((feature) => (
-            <SingleFeature key={feature.id} feature={feature} />
-          ))}
-        </div>
+        <p>
+          From finding your next customer to booking the first call. We take
+          care of the work that keeps your pipeline moving.
+        </p>
       </div>
-    </section>
-  );
-};
+      <div className="qb-services-grid">
+        {featuresData.map((feature, i) => {
+          const Icon = icons[i];
+          return (
+            <article key={feature.id} className="qb-service">
+              <div className="qb-service-top">
+                <Icon size={27} strokeWidth={1.5} />
+                <span>0{feature.id}</span>
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.paragraph}</p>
+              <a
+                href="/#contact"
+                className="qb-service-link"
+                aria-label={`Discuss ${feature.title}`}
+              >
+                Let&apos;s talk <ArrowUpRight size={17} />
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);
 
 export default Features;
