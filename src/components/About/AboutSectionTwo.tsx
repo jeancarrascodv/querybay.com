@@ -1,84 +1,148 @@
-import Link from "next/link";
-import { ArrowUpRight, Check, Globe2 } from "lucide-react";
-
 const regions = [
   {
-    name: "Latin America",
+    flag: "🌎",
+    name: "LATAM",
     countries: "Mexico · Colombia · Argentina · Peru · Chile",
-    description:
-      "Bilingual specialists, working in step with US business hours.",
+    tagline: "Same time zone as the US, fluent bilingual talent.",
   },
   {
+    flag: "🌍",
     name: "Ghana",
     countries: "Accra · Kumasi · Takoradi",
-    description:
-      "English-speaking talent with working hours that overlap the US and Europe.",
+    tagline: "English-speaking African talent hub, EU + US overlap.",
   },
 ];
+
 const benefits = [
-  [
-    "Live in 7–14 days",
-    "We prepare your prospect data, copy, domains, and accounts for launch.",
-  ],
-  [
-    "Dedicated specialists",
-    "SDRs, copywriters, data researchers, and campaign managers who do outbound full-time.",
-  ],
-  [
-    "Fully managed",
-    "We handle your tooling, deliverability, data, and reporting.",
-  ],
-  [
-    "Replacement guarantee",
-    "If a team member isn't the right fit, we arrange a replacement.",
-  ],
+  {
+    title: "Live in 7-14 days",
+    desc: "Sourcing, copywriting, domain warmup, and account setup are ready to launch in under two weeks.",
+  },
+  {
+    title: "Specialists, not generalists",
+    desc: "SDRs, copywriters, and data researchers who do outbound full-time, not as a side task.",
+  },
+  {
+    title: "Fully managed",
+    desc: "We handle tooling, deliverability, data, and reporting. You review the meetings that land on your calendar.",
+  },
+  {
+    title: "Replacement guarantee",
+    desc: "If a team member isn't the right fit, we swap them in with no disruption to your campaigns.",
+  },
 ];
 
-const AboutSectionTwo = () => (
-  <section className="qb-section qb-team" aria-labelledby="team-title">
-    <div className="container">
-      <div className="qb-section-heading">
-        <div>
-          <span className="qb-eyebrow">THE PEOPLE BEHIND THE PIPELINE</span>
-          <h2 id="team-title">
-            Different places.
-            <br />
-            <span className="qb-muted">A shared ambition.</span>
-          </h2>
-        </div>
-        <p>
-          Your campaigns are run by dedicated specialists in Latin America and
-          Ghana. A connected team, focused on your next conversation.
-        </p>
+const AboutSectionTwo = () => {
+  return (
+    <section className="relative overflow-hidden py-20 md:py-28 lg:py-32">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute right-1/2 bottom-0 h-[400px] w-[600px] translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(236,72,153,0.12),transparent_70%)] blur-3xl" />
       </div>
-      <div className="qb-team-layout">
-        <div className="qb-regions">
-          {regions.map((region) => (
-            <article key={region.name}>
-              <Globe2 size={27} strokeWidth={1.5} />
-              <h3>{region.name}</h3>
-              <span>{region.countries}</span>
-              <p>{region.description}</p>
-            </article>
-          ))}
-        </div>
-        <div className="qb-team-benefits">
-          {benefits.map(([title, description]) => (
-            <div key={title}>
-              <Check size={18} />
-              <div>
-                <h3>{title}</h3>
-                <p>{description}</p>
+
+      <div className="container">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+          {/* Visual: Regions */}
+          <div className="order-2 lg:order-1">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {regions.map((r) => (
+                <div
+                  key={r.name}
+                  className="group relative overflow-hidden rounded-3xl border border-black/10 bg-white/70 p-6 backdrop-blur-md transition hover:-translate-y-1 dark:border-white/10 dark:bg-white/5"
+                >
+                  <div className="absolute -top-10 -right-10 text-[140px] opacity-20 transition group-hover:scale-110 group-hover:opacity-30">
+                    {r.flag}
+                  </div>
+                  <div className="relative">
+                    <div className="mb-3 text-4xl">{r.flag}</div>
+                    <h4 className="mb-2 text-xl font-bold text-black dark:text-white">
+                      {r.name}
+                    </h4>
+                    <p className="mb-3 text-sm text-black/50 dark:text-white/60">
+                      {r.countries}
+                    </p>
+                    <p className="text-sm text-black/70 dark:text-white/80">
+                      {r.tagline}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-3xl border border-black/10 bg-[linear-gradient(135deg,rgba(99,102,241,0.08),rgba(236,72,153,0.08))] p-6 backdrop-blur-md dark:border-white/10 dark:bg-[linear-gradient(135deg,rgba(99,102,241,0.15),rgba(236,72,153,0.15))]">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#6366f1,#a855f7,#ec4899)] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-black dark:text-white">
+                    Roles on your team
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "SDR / BDR",
+                  "Appointment Setter",
+                  "Copywriter",
+                  "Data Researcher",
+                  "Deliverability Specialist",
+                  "Campaign Manager",
+                  "LinkedIn Specialist",
+                  "Cold Caller",
+                ].map((role) => (
+                  <span
+                    key={role}
+                    className="rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-black/80 dark:bg-white/10 dark:text-white/80"
+                  >
+                    {role}
+                  </span>
+                ))}
               </div>
             </div>
-          ))}
-          <Link href="/#contact" className="qb-text-link">
-            Build your dedicated team <ArrowUpRight size={18} />
-          </Link>
+          </div>
+
+          <div className="order-1 lg:order-2">
+            <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+              The team
+            </span>
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+              The team behind your pipeline, across{" "}
+              <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+                LATAM and Ghana
+              </span>
+            </h2>
+            <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
+              Your campaigns are run day to day by pre-vetted bilingual
+              specialists from Latin America and Ghana. You get the meetings; we
+              handle sourcing, outreach, and follow-up.
+            </p>
+
+            <div className="space-y-5">
+              {benefits.map((b) => (
+                <div key={b.title} className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#6366f1,#a855f7,#ec4899)] text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.5)]">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="mb-1 text-lg font-semibold text-black dark:text-white">
+                      {b.title}
+                    </h4>
+                    <p className="text-sm text-black/60 dark:text-white/70">
+                      {b.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default AboutSectionTwo;

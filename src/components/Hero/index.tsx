@@ -1,96 +1,122 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Check,
-  Mail,
-  MessageCircle,
-  Phone,
-} from "lucide-react";
 
-const Hero = () => (
-  <>
-    <section id="home" className="qb-hero" aria-labelledby="hero-title">
-      <Image
-        src="/images/hero/workspace.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="qb-hero-image"
+const Hero = () => {
+  return (
+    <section
+      id="home"
+      className="relative z-10 overflow-hidden bg-white pt-[120px] pb-20 md:pb-28 md:pt-[150px] xl:pt-[180px] dark:bg-[#0b0d1a]"
+    >
+      {/* Ambient gradient orbs */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-40 left-1/2 h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.35),transparent_70%)] blur-3xl" />
+        <div className="absolute top-40 -left-40 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.28),transparent_70%)] blur-3xl" />
+        <div className="absolute -right-40 bottom-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.25),transparent_70%)] blur-3xl" />
+      </div>
+
+      {/* Grid pattern */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07] dark:opacity-[0.12]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+        }}
       />
-      <div className="qb-hero-shade" />
-      <div className="qb-hero-inner container">
-        <div className="qb-eyebrow qb-hero-eyebrow">
-          <span className="qb-status-dot" /> HUMAN-LED. MULTICHANNEL. BUILT FOR
-          B2B.
-        </div>
-        <h1 id="hero-title">
-          B2B lead
-          <br />
-          <span>generation.</span>
-        </h1>
-        <p className="qb-hero-description">
-          Your next great client starts with a conversation.
-          <br className="qb-desktop-break" /> We find the right people, start
-          the conversation,
-          <br className="qb-desktop-break" /> and get the meeting on your
-          calendar.
-        </p>
-        <div className="qb-hero-actions">
-          <Link href="/#contact" className="qb-button qb-button-lime">
-            Let&apos;s build your pipeline <ArrowUpRight size={18} />
-          </Link>
-          <Link href="/#features" className="qb-hero-secondary">
-            Explore our services <ArrowDown size={16} />
-          </Link>
-        </div>
-        <div className="qb-hero-bottom">
-          <div className="qb-hero-promise">
-            <Check size={15} /> Dedicated people. No long-term contracts.
+
+      <div className="container">
+        <div className="mx-auto max-w-[920px] text-center">
+          {/* Eyebrow pill */}
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-1.5 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Lead Generation · Multichannel Outreach · Booked Meetings
           </div>
-          <div className="qb-hero-channels" aria-label="Outreach channels">
-            <span>
-              <b className="qb-linkedin-icon" aria-hidden="true">
-                in
-              </b>{" "}
-              LinkedIn
+
+          <h1 className="mb-6 text-4xl font-bold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
+            Outreach that converts.
+            <br />
+            <span className="bg-[linear-gradient(110deg,#6366f1_0%,#a855f7_45%,#ec4899_100%)] bg-clip-text text-transparent">
+              Pipeline that scales.
             </span>
-            <span>
-              <Mail size={15} /> Email
-            </span>
-            <span>
-              <MessageCircle size={15} /> WhatsApp
-            </span>
-            <span>
-              <Phone size={15} /> Calls
-            </span>
+          </h1>
+
+          <p className="mx-auto mb-10 max-w-[680px] text-base leading-relaxed text-black/60 sm:text-lg md:text-xl dark:text-white/70">
+            We build your B2B pipeline with coordinated campaigns across
+            LinkedIn, email, WhatsApp, and calls. Qualified meetings booked for
+            you every month, run by a dedicated team in LATAM and Ghana. No
+            friction, no long commitments.
+          </p>
+
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/#contact"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-8 py-4 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-300 hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.8)]"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Get started
+                <svg
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </span>
+            </Link>
+            <a
+              href="https://app.querybay.com/signin"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-black/15 bg-white/40 px-8 py-4 text-base font-semibold text-black backdrop-blur-md transition-all duration-300 hover:border-black/30 hover:bg-white/70 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <path d="M10 17l5-5-5-5" />
+                <path d="M15 12H3" />
+              </svg>
+              Sign in
+            </a>
+          </div>
+
+          {/* Trust metrics */}
+          <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            {[
+              { value: "+12k", label: "meetings booked" },
+              { value: "9.1%", label: "average reply rate" },
+              { value: "4 channels", label: "LinkedIn · Email · WhatsApp · Call" },
+              { value: "7 days", label: "to campaign launch" },
+            ].map((m) => (
+              <div
+                key={m.label}
+                className="rounded-2xl border border-black/5 bg-white/40 px-4 py-5 backdrop-blur-md dark:border-white/10 dark:bg-white/5"
+              >
+                <div className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-2xl font-bold text-transparent sm:text-3xl">
+                  {m.value}
+                </div>
+                <div className="mt-1 text-xs text-black/60 sm:text-sm dark:text-white/60">
+                  {m.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-    <section className="qb-facts" aria-label="Working with QueryBay">
-      <div className="qb-facts-grid container">
-        <div>
-          <strong>4 channels</strong>
-          <span>One connected outreach strategy</span>
-        </div>
-        <div>
-          <strong>7–14 days</strong>
-          <span>From kickoff to campaign launch</span>
-        </div>
-        <div>
-          <strong>Your team</strong>
-          <span>Dedicated specialists, fully managed</span>
-        </div>
-        <div>
-          <strong>Month to month</strong>
-          <span>Built on results, not long contracts</span>
-        </div>
-      </div>
-    </section>
-  </>
-);
+  );
+};
 
 export default Hero;

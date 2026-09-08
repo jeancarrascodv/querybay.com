@@ -1,16 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import Script from "next/script";
 import { FormEvent, useState } from "react";
-import { ArrowUpRight, Check, LoaderCircle } from "lucide-react";
 
 const CALENDLY_URL =
-  process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/querybay/30min";
+  process.env.NEXT_PUBLIC_CALENDLY_URL ||
+  "https://calendly.com/querybay/30min";
 
 declare global {
   interface Window {
-    Calendly?: { initPopupWidget: (options: { url: string }) => void };
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
   }
 }
 
@@ -20,54 +21,47 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [interest, setInterest] = useState("Multichannel outreach");
   const [message, setMessage] = useState("");
+
   const [submitting, setSubmitting] = useState(false);
-  const [feedback, setFeedback] = useState("");
-  const [calendarUrl, setCalendarUrl] = useState("");
 
-  const openCalendly = async (event: FormEvent) => {
-    event.preventDefault();
-    if (submitting) return;
+  const resetForm = () => {
+    setName("");
+    setCompany("");
+    setEmail("");
+    setInterest("Multichannel outreach");
+    setMessage("");
+  };
+
+  const openCalendly = async (e: FormEvent) => {
+    e.preventDefault();
     setSubmitting(true);
-    setFeedback("");
-    const url = new URL(CALENDLY_URL);
-    url.searchParams.set("name", name);
-    url.searchParams.set("email", email);
-    url.searchParams.set("hide_gdpr_banner", "1");
-    url.searchParams.set("primary_color", "476b20");
-    setCalendarUrl(url.toString());
 
-    // Open during the user gesture so the fallback is not blocked after a fetch.
     try {
-      if (window.Calendly)
-        window.Calendly.initPopupWidget({ url: url.toString() });
-      else window.open(url.toString(), "_blank", "noopener,noreferrer");
-    } catch {
-      // The persistent calendar link below also works if the widget is unavailable.
-    }
-
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 10000);
-    try {
-      const response = await fetch("/api/contact", {
+      await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, company, email, interest, message }),
-        signal: controller.signal,
       });
-      if (!response.ok) throw new Error("Contact request failed");
-      const result = await response.json();
-      if (!result.persisted) throw new Error("Contact details were not saved");
-      setFeedback(
-        "Your details are saved. Choose a time in the calendar to confirm your call.",
-      );
     } catch {
-      setFeedback(
-        "We couldn't save your details. You can still book your call directly using the calendar link below.",
-      );
-    } finally {
-      window.clearTimeout(timeout);
-      setSubmitting(false);
+      // Non-blocking: even if lead capture fails, let the user book
     }
+
+    const params = new URLSearchParams();
+    if (name) params.set("name", name);
+    if (email) params.set("email", email);
+    params.set("hide_gdpr_banner", "1");
+    params.set("primary_color", "a855f7");
+
+    const url = `${CALENDLY_URL}?${params.toString()}`;
+
+    if (typeof window !== "undefined" && window.Calendly) {
+      window.Calendly.initPopupWidget({ url });
+    } else {
+      window.open(url, "_blank");
+    }
+
+    resetForm();
+    setSubmitting(false);
   };
 
   return (
@@ -80,161 +74,156 @@ const Contact = () => {
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
       />
-      <section
-        id="contact"
-        className="qb-section qb-contact"
-        aria-labelledby="contact-title"
-      >
-        <div className="qb-contact-layout container">
-          <div className="qb-contact-copy">
-            <span className="qb-eyebrow">
-              <span className="qb-status-dot" /> YOUR NEXT CHAPTER STARTS HERE
-            </span>
-            <h2 id="contact-title">
-              Let&apos;s make
-              <br />
-              some <span>introductions.</span>
-            </h2>
-            <p>
-              Tell us where you want to go. We&apos;ll map out how to get your
-              next customers into the conversation.
-            </p>
-            <ul>
-              {[
-                "An audit of your current outreach",
-                "Personalized messaging templates",
-                "A dedicated team proposal",
-                "A 90-day plan with clear KPIs",
-              ].map((item) => (
-                <li key={item}>
-                  <Check size={17} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="qb-contact-note">
-              A real conversation. A concrete plan.
-              <br />
-              No commitment required.
+      <section id="contact" className="relative overflow-hidden py-20 md:py-28 lg:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute bottom-0 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(236,72,153,0.1),transparent_70%)] blur-3xl" />
+        </div>
+
+        <div className="container">
+          <div className="mx-auto max-w-[960px]">
+            <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl sm:p-12 lg:p-16 dark:border-white/10 dark:bg-white/5">
+              <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.3),transparent_70%)] blur-2xl" />
+
+              <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-2">
+                <div>
+                  <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+                    Get started today
+                  </span>
+                  <h2 className="mb-5 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+                    Tell us about your{" "}
+                    <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+                      project
+                    </span>
+                  </h2>
+                  <p className="mb-8 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
+                    Book a free 15-min call. We&apos;ll audit your funnel, share 3
+                    proven templates, and hand you a concrete action plan. No
+                    strings attached.
+                  </p>
+
+                  <ul className="space-y-3">
+                    {[
+                      "Audit of your current outreach",
+                      "3 personalized templates",
+                      "Dedicated team proposal",
+                      "90-day plan with KPIs",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-3 text-sm text-black/70 dark:text-white/80"
+                      >
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[linear-gradient(135deg,#6366f1,#a855f7,#ec4899)] text-white">
+                          <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M20 6L9 17l-5-5" />
+                          </svg>
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <form onSubmit={openCalendly} className="space-y-5">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
+                      >
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your name"
+                        className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
+                      >
+                        Company
+                      </label>
+                      <input
+                        id="company"
+                        type="text"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="Your company"
+                        className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
+                    >
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@company.com"
+                      className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="interest"
+                      className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
+                    >
+                      I&apos;m interested in
+                    </label>
+                    <select
+                      id="interest"
+                      value={interest}
+                      onChange={(e) => setInterest(e.target.value)}
+                      className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                    >
+                      <option>Multichannel outreach</option>
+                      <option>Lead generation</option>
+                      <option>Growth marketing</option>
+                      <option>Appointment setting</option>
+                      <option>A combination of these</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="mb-2 block text-xs font-medium uppercase tracking-wider text-black/60 dark:text-white/60"
+                    >
+                      Message (optional)
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Tell us a bit more..."
+                      className="w-full resize-none rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/30 focus:border-[#a855f7] focus:ring-2 focus:ring-[#a855f7]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(168,85,247,0.6)] transition hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.8)] disabled:opacity-60"
+                  >
+                    {submitting ? "Opening calendar..." : "Book a free call"}
+                    <svg className="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M13 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-          <form
-            onSubmit={openCalendly}
-            className="qb-contact-form"
-            aria-label="Book a discovery call"
-          >
-            <div className="qb-form-heading">
-              <h3>A little about you</h3>
-              <span>Let&apos;s start here</span>
-            </div>
-            <div className="qb-form-row">
-              <div className="qb-field">
-                <label htmlFor="name">
-                  Full name <span>*</span>
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  autoComplete="name"
-                  required
-                  maxLength={200}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Alex Morgan"
-                />
-              </div>
-              <div className="qb-field">
-                <label htmlFor="company">Company</label>
-                <input
-                  id="company"
-                  name="company"
-                  autoComplete="organization"
-                  maxLength={200}
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  placeholder="Company name"
-                />
-              </div>
-            </div>
-            <div className="qb-field">
-              <label htmlFor="email">
-                Work email <span>*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                maxLength={320}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="alex@company.com"
-              />
-            </div>
-            <div className="qb-field">
-              <label htmlFor="interest">What can we help with?</label>
-              <select
-                id="interest"
-                name="interest"
-                value={interest}
-                onChange={(e) => setInterest(e.target.value)}
-              >
-                {[
-                  "Multichannel outreach",
-                  "Lead generation",
-                  "Growth marketing",
-                  "Appointment setting",
-                  "A combination of these",
-                ].map((option) => (
-                  <option key={option}>{option}</option>
-                ))}
-              </select>
-            </div>
-            <div className="qb-field">
-              <label htmlFor="message">
-                Anything else?{" "}
-                <span className="qb-field-optional">(optional)</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={3}
-                maxLength={5000}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Your goals, your market, your next big move..."
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={submitting}
-              className="qb-button qb-button-lime qb-submit"
-            >
-              {submitting ? (
-                <>
-                  Saving your details{" "}
-                  <LoaderCircle className="qb-spin" size={18} />
-                </>
-              ) : (
-                <>
-                  Book a free discovery call <ArrowUpRight size={18} />
-                </>
-              )}
-            </button>
-            <p className="qb-form-privacy">
-              Your information stays between us.{" "}
-              <Link href="/privacy">Privacy policy</Link>
-            </p>
-            <div className="qb-form-feedback" role="status" aria-live="polite">
-              {feedback}
-              {calendarUrl && (
-                <a href={calendarUrl} target="_blank" rel="noopener noreferrer">
-                  Open the booking calendar <ArrowUpRight size={15} />
-                </a>
-              )}
-            </div>
-          </form>
         </div>
       </section>
     </>

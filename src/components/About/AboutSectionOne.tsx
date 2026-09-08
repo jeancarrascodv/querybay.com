@@ -1,231 +1,134 @@
-"use client";
-
-import Link from "next/link";
-import { useRef, useState, type KeyboardEvent } from "react";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CalendarCheck,
-  Check,
-  Mail,
-  MessageCircle,
-  Phone,
-  Send,
-} from "lucide-react";
-
 const channels = [
   {
     name: "LinkedIn",
-    icon: Send,
-    title: "Make the right first connection.",
-    description:
-      "Get in front of the decision-makers who matter. We build relevant prospect lists and turn thoughtful introductions into real business conversations.",
-    steps: [
-      "Find your ideal decision-makers",
-      "Send a personal introduction",
-      "Follow up with something valuable",
-      "Move the conversation to a meeting",
-    ],
-    tone: "blue",
-    tag: "RELATIONSHIPS FIRST",
-    note: "Connection requests, InMail, and personalized follow-ups.",
+    desc: "Connection requests, InMails, and content",
+    color: "from-[#0077b5] to-[#00a0dc]",
   },
   {
-    name: "Email",
-    icon: Mail,
-    title: "An inbox is a place to start.",
-    description:
-      "Reach your next customer with a message that feels relevant. We manage your domains, deliverability, copy, and follow-ups from the first send to the reply.",
-    steps: [
-      "Source and verify the right contacts",
-      "Prepare domains and mailboxes",
-      "Launch personalized sequences",
-      "Qualify replies and book the call",
-    ],
-    tone: "coral",
-    tag: "RELEVANCE AT SCALE",
-    note: "Verified data, warmed-up domains, and considered copy.",
+    name: "Cold Email",
+    desc: "Warmed-up domains, AI-personalized copy",
+    color: "from-[#ef4444] to-[#f97316]",
   },
   {
     name: "WhatsApp",
-    icon: MessageCircle,
-    title: "Keep the conversation going.",
-    description:
-      "Meet interested prospects where they already communicate. Our team handles conversational nurturing, timely follow-ups, and the details that move an opportunity forward.",
-    steps: [
-      "Identify the right conversations",
-      "Start a relevant, personal exchange",
-      "Answer questions and qualify interest",
-      "Confirm the next step together",
-    ],
-    tone: "green",
-    tag: "A MORE PERSONAL FOLLOW-UP",
-    note: "Conversational nurturing and direct, human follow-ups.",
+    desc: "Conversational nurturing and direct closing",
+    color: "from-[#25d366] to-[#128c7e]",
   },
   {
-    name: "Calls",
-    icon: Phone,
-    title: "Put a human voice to your offer.",
-    description:
-      "Some opportunities need a real conversation. Dedicated callers introduce your business, understand the prospect's needs, and set up your sales team for the next step.",
-    steps: [
-      "Research the account and contact",
-      "Prepare a tailored talking track",
-      "Connect and qualify the opportunity",
-      "Book a meeting with your team",
-    ],
-    tone: "yellow",
-    tag: "REAL PEOPLE. REAL CONVERSATIONS.",
-    note: "Outbound calling, qualification, and appointment setting.",
+    name: "Voice & Video",
+    desc: "Cold calling, VSLs, and AI voice agents",
+    color: "from-[#a855f7] to-[#ec4899]",
   },
 ];
 
-export default function AboutSectionOne() {
-  const [active, setActive] = useState(0);
-  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  const onTabKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    let next = index;
-    if (event.key === "ArrowRight") next = (index + 1) % channels.length;
-    else if (event.key === "ArrowLeft")
-      next = (index + channels.length - 1) % channels.length;
-    else if (event.key === "Home") next = 0;
-    else if (event.key === "End") next = channels.length - 1;
-    else return;
-    event.preventDefault();
-    setActive(next);
-    tabs.current[next]?.focus();
-  };
-
+const AboutSectionOne = () => {
   return (
     <section
       id="about"
-      className="qb-section qb-channels"
-      aria-labelledby="channels-title"
+      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
     >
       <div className="container">
-        <div className="qb-section-heading">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <div>
-            <span className="qb-eyebrow">02 / HOW IT WORKS</span>
-            <h2 id="channels-title">
-              More ways in.
-              <br />
-              <span>One connected strategy.</span>
-            </h2>
-          </div>
-          <p>
-            Your prospects don&apos;t live on one platform. We coordinate the
-            right channels around one goal: your next qualified meeting.
-          </p>
-        </div>
-        <div
-          className="qb-channel-tabs"
-          role="tablist"
-          aria-label="Outreach channels"
-        >
-          {channels.map((item, index) => (
-            <button
-              key={item.name}
-              ref={(node) => {
-                tabs.current[index] = node;
-              }}
-              role="tab"
-              id={`channel-tab-${index}`}
-              aria-selected={active === index}
-              aria-controls={`channel-panel-${index}`}
-              tabIndex={active === index ? 0 : -1}
-              onKeyDown={(event) => onTabKey(event, index)}
-              onClick={() => setActive(index)}
-              className={active === index ? "is-active" : ""}
-            >
-              <item.icon size={19} />
-              {item.name}
-              <ArrowUpRight className="qb-tab-arrow" size={17} />
-            </button>
-          ))}
-        </div>
-        {channels.map((item, index) => (
-          <div
-            key={item.name}
-            id={`channel-panel-${index}`}
-            role="tabpanel"
-            aria-labelledby={`channel-tab-${index}`}
-            hidden={active !== index}
-            tabIndex={0}
-            className="qb-channel-panel"
-          >
-            <div className="qb-channel-copy">
-              <span className={`qb-channel-label qb-tone-${item.tone}`}>
-                {item.tag}
+            <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+              Multichannel Outreach
+            </span>
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+              We reach your prospects{" "}
+              <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+                wherever they are
               </span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <Link href="/#contact" className="qb-text-link">
-                Build my outreach plan <ArrowUpRight size={18} />
-              </Link>
+            </h2>
+            <p className="mb-10 text-base leading-relaxed text-black/60 sm:text-lg dark:text-white/70">
+              We don&apos;t rely on a single channel. We orchestrate coordinated
+              campaigns across LinkedIn, email, WhatsApp, and voice to maximize
+              the chance of a conversation with every target account.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {channels.map((c) => (
+                <div
+                  key={c.name}
+                  className="rounded-2xl border border-black/5 bg-white/60 p-5 backdrop-blur-md dark:border-white/10 dark:bg-white/5"
+                >
+                  <div
+                    className={`mb-3 inline-flex h-2 w-2 rounded-full bg-gradient-to-br ${c.color}`}
+                  />
+                  <h4 className="mb-1 text-base font-semibold text-black dark:text-white">
+                    {c.name}
+                  </h4>
+                  <p className="text-sm text-black/55 dark:text-white/60">
+                    {c.desc}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div
-              className="qb-sequence"
-              aria-label={`${item.name} campaign process`}
-            >
-              <div className="qb-sequence-header">
-                <span>
-                  <item.icon size={17} /> {item.name} outreach
-                </span>
-                <span className="qb-sequence-caption">THE SEQUENCE</span>
+          </div>
+
+          {/* Visual: Dashboard mock */}
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-3xl bg-[linear-gradient(135deg,#6366f1,#a855f7,#ec4899)] opacity-20 blur-3xl" />
+            <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur-xl dark:border-white/10 dark:bg-[#0f1220]/80">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">
+                    Weekly pipeline
+                  </div>
+                  <div className="text-2xl font-bold text-black dark:text-white">
+                    347 replies
+                  </div>
+                </div>
+                <div className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                  +32.4%
+                </div>
               </div>
-              <ol>
-                {item.steps.map((step, i) => (
-                  <li key={step}>
-                    <span
-                      className={`qb-step-marker ${i === 3 ? "qb-step-complete" : ""}`}
-                    >
-                      {i === 3 ? (
-                        <CalendarCheck size={18} />
-                      ) : (
-                        String(i + 1).padStart(2, "0")
-                      )}
-                    </span>
-                    <span>{step}</span>
-                    {i === 3 ? (
-                      <Check size={16} className="qb-step-check" />
-                    ) : (
-                      <ArrowRight size={15} className="qb-step-arrow" />
-                    )}
-                  </li>
+
+              <div className="space-y-3">
+                {[
+                  { label: "LinkedIn", value: 78, color: "from-[#6366f1] to-[#8b5cf6]" },
+                  { label: "Email", value: 92, color: "from-[#a855f7] to-[#ec4899]" },
+                  { label: "WhatsApp", value: 54, color: "from-[#10b981] to-[#06b6d4]" },
+                  { label: "Voice", value: 34, color: "from-[#f59e0b] to-[#ef4444]" },
+                ].map((row) => (
+                  <div key={row.label}>
+                    <div className="mb-1 flex items-center justify-between text-xs">
+                      <span className="text-black/60 dark:text-white/60">
+                        {row.label}
+                      </span>
+                      <span className="font-medium text-black/80 dark:text-white/80">
+                        {row.value}%
+                      </span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${row.color}`}
+                        style={{ width: `${row.value}%` }}
+                      />
+                    </div>
+                  </div>
                 ))}
-              </ol>
-              <p>{item.note}</p>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-3 border-t border-black/5 pt-6 dark:border-white/10">
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Meetings</div>
+                  <div className="text-lg font-bold text-black dark:text-white">48</div>
+                </div>
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Email CTR</div>
+                  <div className="text-lg font-bold text-black dark:text-white">12.8%</div>
+                </div>
+                <div>
+                  <div className="text-xs text-black/50 dark:text-white/50">Reply rate</div>
+                  <div className="text-lg font-bold text-black dark:text-white">9.1%</div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-        <div className="qb-process">
-          <div>
-            <span>01</span>
-            <h3>Align on your goals</h3>
-            <p>
-              We define your ideal customer, offer, and what a qualified meeting
-              looks like.
-            </p>
-          </div>
-          <div>
-            <span>02</span>
-            <h3>Build and launch</h3>
-            <p>
-              Your team prepares the data, messaging, and channels. Launch in
-              7–14 days.
-            </p>
-          </div>
-          <div>
-            <span>03</span>
-            <h3>Learn. Refine. Grow.</h3>
-            <p>
-              We work the replies, book the meetings, and improve the campaign
-              week by week.
-            </p>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default AboutSectionOne;

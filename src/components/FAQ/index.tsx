@@ -1,8 +1,22 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { ArrowUpRight, Minus, Plus } from "lucide-react";
+
+function ChevronDown({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
 
 type FAQItem = {
   q: string;
@@ -46,56 +60,76 @@ const FAQS: FAQItem[] = [
 
 const FAQ = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+
   return (
-    <section id="faq" className="qb-section qb-faq" aria-labelledby="faq-title">
-      <div className="qb-faq-layout container">
-        <div className="qb-faq-intro">
-          <span className="qb-eyebrow">04 / A LITTLE MORE CLARITY</span>
-          <h2 id="faq-title">
-            Good questions.
-            <br />
-            <span className="qb-muted">Straight answers.</span>
+    <section className="relative overflow-hidden py-20 md:py-28 lg:py-32">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/4 top-1/3 h-[400px] w-[500px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.06),transparent_70%)] blur-3xl" />
+      </div>
+
+      <div className="container">
+        <div className="mx-auto mb-12 max-w-[720px] text-center">
+          <span className="mb-4 inline-block rounded-full border border-black/10 bg-white/60 px-4 py-1 text-xs font-medium text-black/70 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+            FAQ
+          </span>
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-black sm:text-4xl md:text-5xl dark:text-white">
+            Questions, answered{" "}
+            <span className="bg-[linear-gradient(110deg,#6366f1,#a855f7,#ec4899)] bg-clip-text text-transparent">
+              honestly
+            </span>
           </h2>
-          <p>Here&apos;s what to know before we get started.</p>
-          <Link href="/#contact" className="qb-text-link">
-            Ask us anything <ArrowUpRight size={17} />
-          </Link>
+          <p className="text-base text-black/60 sm:text-lg dark:text-white/70">
+            What we tell you in sales is what you get in production. No
+            asterisks.
+          </p>
         </div>
-        <div className="qb-faq-list">
+
+        <div className="mx-auto max-w-[820px] space-y-3">
           {FAQS.map((item, i) => {
             const open = openIdx === i;
             return (
               <div
-                className={`qb-faq-item ${open ? "is-open" : ""}`}
                 key={item.q}
+                className="overflow-hidden rounded-2xl border border-black/8 bg-white/70 backdrop-blur-md dark:border-white/10 dark:bg-white/[0.03]"
               >
-                <h3>
-                  <button
-                    type="button"
-                    id={`faq-question-${i}`}
-                    aria-expanded={open}
-                    aria-controls={`faq-answer-${i}`}
-                    onClick={() => setOpenIdx(open ? null : i)}
-                  >
-                    <span className="qb-faq-number">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span>{item.q}</span>
-                    {open ? <Minus size={18} /> : <Plus size={18} />}
-                  </button>
-                </h3>
-                <div
-                  id={`faq-answer-${i}`}
-                  role="region"
-                  aria-labelledby={`faq-question-${i}`}
-                  hidden={!open}
+                <button
+                  type="button"
+                  onClick={() => setOpenIdx(open ? null : i)}
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left text-sm font-semibold text-black transition hover:bg-black/[0.02] dark:text-white dark:hover:bg-white/[0.02]"
+                  aria-expanded={open}
                 >
-                  <p>{item.a}</p>
+                  <span>{item.q}</span>
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 text-black/45 transition-transform dark:text-white/45 ${
+                      open ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                <div
+                  className={`grid transition-all duration-300 ease-out ${
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="px-6 pb-5 text-sm leading-relaxed text-black/65 dark:text-white/65">
+                      {item.a}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        <p className="mt-10 text-center text-sm text-black/50 dark:text-white/50">
+          Still curious?{" "}
+          <a
+            href="#contact"
+            className="font-semibold text-black underline-offset-4 hover:underline dark:text-white"
+          >
+            Ask us anything
+          </a>
+        </p>
       </div>
     </section>
   );
