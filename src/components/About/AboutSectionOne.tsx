@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
@@ -159,9 +160,9 @@ export default function AboutSectionOne() {
               </span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-              <a href="/#contact" className="qb-text-link">
+              <Link href="/#contact" className="qb-text-link">
                 Build my outreach plan <ArrowUpRight size={18} />
-              </a>
+              </Link>
             </div>
             <div
               className="qb-sequence"

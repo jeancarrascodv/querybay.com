@@ -1,3 +1,4 @@
+import Link from "next/link";
 import OfferList from "./OfferList";
 import PricingBox from "./PricingBox";
 import { ArrowUpRight, Check } from "lucide-react";
@@ -89,9 +90,9 @@ const Pricing = () => (
           <Check size={16} /> Clear scope. Custom quote. Month-to-month
           flexibility.
         </span>
-        <a href="/#contact" className="qb-text-link">
+        <Link href="/#contact" className="qb-text-link">
           Find the right fit <ArrowUpRight size={17} />
-        </a>
+        </Link>
       </div>
     </div>
   </section>

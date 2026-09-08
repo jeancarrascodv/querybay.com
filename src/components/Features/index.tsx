@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   ArrowUpRight,
   CalendarCheck,
@@ -50,13 +51,13 @@ const Features = () => (
               </div>
               <h3>{feature.title}</h3>
               <p>{feature.paragraph}</p>
-              <a
+              <Link
                 href="/#contact"
                 className="qb-service-link"
                 aria-label={`Discuss ${feature.title}`}
               >
                 Let&apos;s talk <ArrowUpRight size={17} />
-              </a>
+              </Link>
             </article>
           );
         })}

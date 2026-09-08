@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { ArrowUpRight, Minus, Plus } from "lucide-react";
 
@@ -56,9 +57,9 @@ const FAQ = () => {
             <span className="qb-muted">Straight answers.</span>
           </h2>
           <p>Here&apos;s what to know before we get started.</p>
-          <a href="/#contact" className="qb-text-link">
+          <Link href="/#contact" className="qb-text-link">
             Ask us anything <ArrowUpRight size={17} />
-          </a>
+          </Link>
         </div>
         <div className="qb-faq-list">
           {FAQS.map((item, i) => {

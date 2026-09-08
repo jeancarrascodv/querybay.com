@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight, Check, Globe2 } from "lucide-react";
 
 const regions = [
@@ -71,9 +72,9 @@ const AboutSectionTwo = () => (
               </div>
             </div>
           ))}
-          <a href="/#contact" className="qb-text-link">
+          <Link href="/#contact" className="qb-text-link">
             Build your dedicated team <ArrowUpRight size={18} />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
